@@ -1030,7 +1030,7 @@
         </div>
 
         <!-- TODO: replace names, designations and photos with confirmed plenary speakers -->
-        <div id="plenary-wrapper" class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div id="plenary-wrapper" class="mt-14 flex flex-wrap justify-center gap-6">
           <!-- cards injected by JS -->
         </div>
       </div>
@@ -1915,33 +1915,41 @@
       </article>`).join('');
     };
 
-    const speakerCard = (dark, featured = false) => ([name, desig, univ, country, area, initials, photo]) => `
-      <article class="tilt group h-full ${featured ? 'w-full max-w-sm rounded-3xl p-8 sm:p-10' : 'rounded-2xl p-4'} text-center backdrop-blur transition ${dark
+    const speakerCard = (dark, size = false) => ([name, desig, univ, country, area, initials, photo]) => {
+      const big = size === 'featured' || size === 'large';
+      const widthClasses = size === 'featured'
+        ? 'w-full max-w-sm'
+        : size === 'large'
+          ? 'w-full sm:w-[calc(50%-.75rem)] lg:w-[calc(33.333%-1rem)]'
+          : '';
+      return `
+      <article class="tilt group h-full ${widthClasses} ${big ? 'rounded-3xl p-8 sm:p-10' : 'rounded-2xl p-4'} text-center backdrop-blur transition ${dark
         ? 'bg-white/5 ring-1 ring-white/10 hover:ring-accent/60'
         : 'bg-white shadow-soft ring-1 ring-slate-100 hover:shadow-softlg dark:bg-nightcard dark:ring-white/10'}">
         ${photo
-        ? `<img src="${encodeURI(photo)}" alt="${name}" loading="lazy" class="mx-auto ${featured ? 'h-32 w-32 ring-4' : 'h-14 w-14 ring-2'} rounded-full object-cover transition group-hover:scale-105 ${dark ? 'ring-white/10' : 'ring-primary/5 dark:ring-white/10'}" />`
-        : `<span class="mx-auto grid ${featured ? 'h-32 w-32 ring-4' : 'h-14 w-14 ring-2'} place-items-center rounded-full bg-gradient-to-br from-accent to-yellow-200 font-display ${featured ? 'text-2xl' : 'text-base'} font-semibold text-primary transition group-hover:scale-105 ${dark ? 'ring-white/10' : 'ring-primary/5 dark:ring-white/10'}">${initials}</span>`}
-        <h3 class="${featured ? 'mt-5 text-xl sm:text-2xl' : 'mt-2.5 text-sm'} font-heading font-semibold ${dark ? 'text-white' : 'text-primary dark:text-white'}">${name}</h3>
-        <p class="mt-1 ${featured ? 'text-base' : 'text-xs'} text-accent">${desig}</p>
-        <p class="mt-1 ${featured ? 'text-sm' : 'text-xs'} ${dark ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}">${univ} · ${country}</p>
-        <p class="mt-3 inline-block rounded-full ${featured ? 'px-4 py-1.5 text-sm' : 'px-2.5 py-1 text-[11px]'} ${dark
+        ? `<img src="${encodeURI(photo)}" alt="${name}" loading="lazy" class="mx-auto ${big ? 'h-32 w-32 ring-4' : 'h-14 w-14 ring-2'} rounded-full object-cover transition group-hover:scale-105 ${dark ? 'ring-white/10' : 'ring-primary/5 dark:ring-white/10'}" />`
+        : `<span class="mx-auto grid ${big ? 'h-32 w-32 ring-4' : 'h-14 w-14 ring-2'} place-items-center rounded-full bg-gradient-to-br from-accent to-yellow-200 font-display ${big ? 'text-2xl' : 'text-base'} font-semibold text-primary transition group-hover:scale-105 ${dark ? 'ring-white/10' : 'ring-primary/5 dark:ring-white/10'}">${initials}</span>`}
+        <h3 class="${big ? 'mt-5 text-xl sm:text-2xl' : 'mt-2.5 text-sm'} font-heading font-semibold ${dark ? 'text-white' : 'text-primary dark:text-white'}">${name}</h3>
+        <p class="mt-1 ${big ? 'text-base' : 'text-xs'} text-accent">${desig}</p>
+        <p class="mt-1 ${big ? 'text-sm' : 'text-xs'} ${dark ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}">${univ} · ${country}</p>
+        <p class="mt-3 inline-block rounded-full ${big ? 'px-4 py-1.5 text-sm' : 'px-2.5 py-1 text-[11px]'} ${dark
         ? 'bg-white/5 text-slate-300 ring-1 ring-white/10'
         : 'bg-primary/5 text-slate-600 ring-1 ring-slate-100 dark:bg-white/5 dark:text-slate-300 dark:ring-white/10'}">${area}</p>
       </article>`;
+    };
 
-    const injectSpeakerGroup = (wrapperId, list, dark, swiper = false, featured = false) => {
+    const injectSpeakerGroup = (wrapperId, list, dark, swiper = false, size = false) => {
       const el = $(wrapperId);
       if (!el) return;
-      const cards = list.map(speakerCard(dark, featured));
+      const cards = list.map(speakerCard(dark, size));
       el.innerHTML = swiper
         ? cards.map((card) => `<div class="swiper-slide h-auto">${card}</div>`).join('')
         : cards.join('');
     };
 
     const injectSpeakers = () => {
-      injectSpeakerGroup('#speakers-wrapper', SPEAKERS, true, false, true);
-      injectSpeakerGroup('#plenary-wrapper', PLENARY_SPEAKERS, false);
+      injectSpeakerGroup('#speakers-wrapper', SPEAKERS, true, false, 'featured');
+      injectSpeakerGroup('#plenary-wrapper', PLENARY_SPEAKERS, false, false, 'large');
       injectSpeakerGroup('#invited-wrapper', INVITED_SPEAKERS, true);
       injectSpeakerGroup('#advisors-wrapper', ADVISORS, false, true);
     };
