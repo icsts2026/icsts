@@ -255,6 +255,82 @@
       }
     }
 
+    /* --- Hero background slideshow --- */
+    .hero-bg-slideshow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero-bg-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      animation: heroBgFade 12s linear infinite;
+      /* 6 images x 2 seconds = 12 */
+    }
+
+    .hero-bg-slide:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .hero-bg-slide:nth-child(2) {
+      animation-delay: 2s;
+    }
+
+    .hero-bg-slide:nth-child(3) {
+      animation-delay: 4s;
+    }
+
+    .hero-bg-slide:nth-child(4) {
+      animation-delay: 6s;
+    }
+
+    .hero-bg-slide:nth-child(5) {
+      animation-delay: 8s;
+    }
+
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(6, 15, 39, .74);
+    }
+
+    @keyframes heroBgFade {
+      0% {
+        opacity: 0;
+      }
+
+      4% {
+        opacity: 1;
+      }
+
+      16% {
+        opacity: 1;
+      }
+
+      20% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-bg-slide {
+        animation: none;
+      }
+
+      .hero-bg-slide:first-child {
+        opacity: 1;
+      }
+    }
+
     /* --- Hero gradient orbs --- */
     .orb {
       position: absolute;
@@ -292,6 +368,12 @@
         height: 100%;
         transform: none;
         background: linear-gradient(180deg, #C89B3C, rgba(200, 155, 60, .15));
+      }
+    }
+
+    @media (min-width: 768px) {
+      .timeline-line::before {
+        content: none;
       }
     }
 
@@ -638,6 +720,19 @@
 
     <!-- ==================== HERO ==================== -->
     <section id="home" class="relative flex min-h-screen items-center overflow-hidden bg-primary text-white">
+      <!-- Background image slideshow (fades between images) -->
+      <div class="hero-bg-slideshow" aria-hidden="true">
+        <div class="hero-bg-slide"
+          style="background-image:url('website_background_images/Artificial Intelligence.jpg')"></div>
+        <div class="hero-bg-slide" style="background-image:url('website_background_images/Biodiversity.jpg')"></div>
+        <div class="hero-bg-slide" style="background-image:url('website_background_images/Biotechnology.jpg')"></div>
+        <div class="hero-bg-slide" style="background-image:url('website_background_images/Environment.jpg')"></div>
+        <div class="hero-bg-slide" style="background-image:url('website_background_images/Health Sciences.jpg')"></div>
+        <div class="hero-bg-slide"
+          style="background-image:url('website_background_images/Sustainable Technological Innovation.jpg')"></div>
+        <div class="hero-bg-overlay"></div>
+      </div>
+
       <!-- Particle canvas -->
       <canvas id="particles" class="absolute inset-0 h-full w-full opacity-60" aria-hidden="true"></canvas>
 
@@ -739,7 +834,8 @@
             class="btn-ripple inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-8 py-3.5 font-heading font-semibold text-white backdrop-blur transition hover:-translate-y-0.5 hover:border-accent hover:text-accent">
             <i class="bi bi-download" aria-hidden="true"></i> Brochure
           </a>
-          <a href="https://drive.google.com/file/d/1nzvqZqfUxqFjl_RskgxYwVoD4NtgQ_3R/view?usp=sharing" target="_blank" rel="noopener"
+          <a href="https://drive.google.com/file/d/1nzvqZqfUxqFjl_RskgxYwVoD4NtgQ_3R/view?usp=sharing" target="_blank"
+            rel="noopener"
             class="btn-ripple inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-8 py-3.5 font-heading font-semibold text-white backdrop-blur transition hover:-translate-y-0.5 hover:border-accent hover:text-accent">
             <i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> Flyer
           </a>
@@ -784,8 +880,8 @@
               </div>
               <!-- <div class="flex gap-4">
                  <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent/10 text-accent"><i -->
-                    <!-- class="bi bi-lightbulb text-lg" aria-hidden="true"></i></span> -->
-                <!-- <div>
+              <!-- class="bi bi-lightbulb text-lg" aria-hidden="true"></i></span> -->
+              <!-- <div>
                   <dt class="font-heading font-semibold text-primary dark:text-white">Conference Theme</dt>
                   <dd class="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">“Intelligent Systems for a
                     Sustainable Tomorrow” - advancing technology that serves society, from smart agriculture to medical
@@ -819,7 +915,7 @@
           <div data-aos="fade-left" class="relative">
             <div class="tilt relative overflow-hidden rounded-3xl bg-white p-2 shadow-softlg dark:bg-nightcard">
               <img src="vugate.jpg" alt="VUGate - campus entrance" class="h-auto w-full rounded-2xl object-cover" />
-            </div>           
+            </div>
           </div>
 
         </div>
@@ -845,7 +941,8 @@
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Mark Your Calendar</span>
-          <h2 class="mt-4 font-display text-3xl font-semibold text-primary dark:text-white sm:text-4xl">Important Dates
+          <h2 class="mt-4 font-display text-3xl font-semibold text-primary dark:text-white sm:text-4xl">Important
+            Deadlines
           </h2>
         </div>
 
@@ -1620,7 +1717,7 @@
       ['bi-layers', 'Biodiversity', 'Conservation science, ecosystem monitoring and the sustainable use of biological resources.'],
       ['bi-bar-chart-line', 'Environment', 'Climate change, pollution control, and environmental monitoring and management.'],
       ['bi-eye', 'Health Science', 'Public health, diagnostics, therapeutics and translational biomedical research.'],
-    
+
     ];
 
     // Keynote speaker - Inaugural Session (Day 1)
@@ -1642,7 +1739,7 @@
       ['Dr. Bhaskar Saha', 'National Professor', 'CCRH, Ministry of AYUSH', 'India', 'Science & Technology in Interdisciplinary Contribution to Human Health and Environment', 'BS', 'website_images/plenary_speakers/Dr. Bhaskar Saha.jpeg'],
       ['Prof. Amlan Chakraborty', 'Director, A.K. Choudhury School of Information Technology', 'University of Calcutta', 'India', 'Artificial Intelligence for Sustainable Development', 'AC', 'website_images/plenary_speakers/Prof. Amlan Chakraborty.jpeg'],
       ['Prof. Samit Kumar Ray', 'Ex-Director, S.N. Bose National Centre for Basic Sciences', 'IIT Kharagpur', 'India', 'Emerging Materials for Photonic & Energy Harvesting Devices', 'SR', 'website_images/plenary_speakers/Prof. Samit Kumar Ray.jpeg'],
-      
+
     ];
 
     // Invited speakers 1-14 (Tracks A-F, Day 1 & Day 2 parallel sessions)
@@ -1694,10 +1791,10 @@
         ['Computational Science & Artificial Intelligence', 'Chair(s): Prof. Shyamal K. Mandal, Prof. Biswapati Jana and Prof. Sutanu Dutta', 'bi-cpu'],
         ['Sustainable Technological Innovation', 'Chair(s): Prof. Brajagopal Bag and Prof. Swarnendu Sarkar', 'bi-lightbulb'],
         ['Biotechnology', 'Chair(s): Prof. Keshab C. Mondal and Dr. Manoj K. Pati', 'bi-heart-pulse'],
-        ['Environment', 'Chair(s):  Prof Ramkrishna Maity and Dr. Jatisankar Bandyopadhyay', 'bi-globe2'],        
-        ['Biodiversity', 'Chair(s): Prof Amal K. Mondal and Prof. Subrata K. De', 'bi-tree'],        
-        ['Health Science', 'Chair(s): Prof. Sujata Maity Chowdhury, Prof Sandip Chattopadhyay and Prof Dipak K Midya', 'bi-heart-pulse'],        
-      
+        ['Environment', 'Chair(s):  Prof Ramkrishna Maity and Dr. Jatisankar Bandyopadhyay', 'bi-globe2'],
+        ['Biodiversity', 'Chair(s): Prof Amal K. Mondal and Prof. Subrata K. De', 'bi-tree'],
+        ['Health Science', 'Chair(s): Prof. Sujata Maity Chowdhury, Prof Sandip Chattopadhyay and Prof Dipak K Midya', 'bi-heart-pulse'],
+
       ]],
       ['Chair (s), International/National Resource/Guest Sub-Committee', [
         ['Prof. Sujata Maity Chowdhury', 'Vidyasagar University', 'bi-globe2'],
