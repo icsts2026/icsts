@@ -1030,7 +1030,7 @@
         </div>
 
         <!-- TODO: replace names, designations and photos with confirmed plenary speakers -->
-        <div id="plenary-wrapper" class="mt-14 flex flex-wrap justify-center gap-6">
+        <div id="plenary-wrapper" class="mt-14 flex flex-wrap items-stretch justify-center gap-6">
           <!-- cards injected by JS -->
         </div>
       </div>
@@ -1046,7 +1046,7 @@
         </div>
 
         <!-- TODO: replace names, designations and photos with confirmed invited speakers -->
-        <div id="invited-wrapper" class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div id="invited-wrapper" class="mt-14 flex flex-wrap items-stretch justify-center gap-6">
           <!-- cards injected by JS -->
         </div>
       </div>
@@ -1915,33 +1915,61 @@
       </article>`).join('');
     };
 
-    const speakerCard = (dark, size = false) => ([name, desig, univ, country, area, initials, photo]) => {
-      const big = size === 'featured' || size === 'large';
-      const widthClasses = size === 'featured'
-        ? 'w-full max-w-sm'
-        : size === 'large'
-          ? 'w-full sm:w-[calc(50%-.75rem)] lg:w-[calc(33.333%-1rem)]'
-          : '';
+    // ============================================================================
+    // SPEAKER CARD SIZE SETTINGS — tweak these anytime to change how big/small
+    // each speaker section's cards are. No need to touch the markup below.
+    //   columns   -> cards per row on large screens (used by every size except
+    //                'featured', which is always a single centered card)
+    //   maxWidthPx-> fixed card width in px (only used by 'featured')
+    //   avatarPx  -> diameter of the photo / initials circle, in pixels
+    //   padding   -> Tailwind padding classes applied to the card
+    //   nameSize / metaSize / tagSize -> Tailwind text-size classes for the
+    //                name, the meta lines (designation/university), and the tag
+    // To add a new size, copy one of the blocks below, give it a new key, then
+    // pass that key as the last argument to injectSpeakerGroup() further down.
+    // ============================================================================
+    const SPEAKER_CARD_SIZES = {
+      featured: { maxWidthPx: 380, avatarPx: 128, padding: 'p-8 sm:p-10', nameSize: 'text-xl sm:text-2xl', metaSize: 'text-sm', tagSize: 'text-sm' },
+      large: { columns: 3, avatarPx: 128, padding: 'p-8 sm:p-10', nameSize: 'text-xl sm:text-2xl', metaSize: 'text-sm', tagSize: 'text-sm' },
+      compact: { columns: 4, avatarPx: 56, padding: 'p-4', nameSize: 'text-sm', metaSize: 'text-xs', tagSize: 'text-[11px]' },
+    };
+
+    // Turns a size config into a Tailwind width class so N cards fit per row
+    // (2 per row on small screens, N per row on large screens), matching the
+    // wrapper's gap-6 (1.5rem) gap.
+    const cardWidthClass = (cfg) => {
+      if (cfg.maxWidthPx) return `w-full max-w-[${cfg.maxWidthPx}px]`;
+      const gapRem = 1.5;
+      const pct = (n) => (100 / n).toFixed(4);
+      const gap = (n) => ((n - 1) / n * gapRem).toFixed(4);
+      const smCols = Math.min(cfg.columns, 2);
+      return `w-full sm:w-[calc(${pct(smCols)}%_-_${gap(smCols)}rem)] lg:w-[calc(${pct(cfg.columns)}%_-_${gap(cfg.columns)}rem)]`;
+    };
+
+    const speakerCard = (dark, sizeKey = 'compact') => ([name, desig, univ, country, area, initials, photo]) => {
+      const cfg = SPEAKER_CARD_SIZES[sizeKey] || SPEAKER_CARD_SIZES.compact;
+      const big = sizeKey !== 'compact';
+      const avatarClass = `h-[${cfg.avatarPx}px] w-[${cfg.avatarPx}px] shrink-0 ${big ? 'ring-4' : 'ring-2'}`;
       return `
-      <article class="tilt group h-full ${widthClasses} ${big ? 'rounded-3xl p-8 sm:p-10' : 'rounded-2xl p-4'} text-center backdrop-blur transition ${dark
+      <article class="tilt group flex h-full flex-col ${cardWidthClass(cfg)} ${cfg.padding} ${big ? 'rounded-3xl' : 'rounded-2xl'} text-center backdrop-blur transition ${dark
         ? 'bg-white/5 ring-1 ring-white/10 hover:ring-accent/60'
         : 'bg-white shadow-soft ring-1 ring-slate-100 hover:shadow-softlg dark:bg-nightcard dark:ring-white/10'}">
         ${photo
-        ? `<img src="${encodeURI(photo)}" alt="${name}" loading="lazy" class="mx-auto ${big ? 'h-32 w-32 ring-4' : 'h-14 w-14 ring-2'} rounded-full object-cover transition group-hover:scale-105 ${dark ? 'ring-white/10' : 'ring-primary/5 dark:ring-white/10'}" />`
-        : `<span class="mx-auto grid ${big ? 'h-32 w-32 ring-4' : 'h-14 w-14 ring-2'} place-items-center rounded-full bg-gradient-to-br from-accent to-yellow-200 font-display ${big ? 'text-2xl' : 'text-base'} font-semibold text-primary transition group-hover:scale-105 ${dark ? 'ring-white/10' : 'ring-primary/5 dark:ring-white/10'}">${initials}</span>`}
-        <h3 class="${big ? 'mt-5 text-xl sm:text-2xl' : 'mt-2.5 text-sm'} font-heading font-semibold ${dark ? 'text-white' : 'text-primary dark:text-white'}">${name}</h3>
-        <p class="mt-1 ${big ? 'text-base' : 'text-xs'} text-accent">${desig}</p>
-        <p class="mt-1 ${big ? 'text-sm' : 'text-xs'} ${dark ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}">${univ} · ${country}</p>
-        <p class="mt-3 inline-block rounded-full ${big ? 'px-4 py-1.5 text-sm' : 'px-2.5 py-1 text-[11px]'} ${dark
+        ? `<img src="${encodeURI(photo)}" alt="${name}" loading="lazy" class="mx-auto ${avatarClass} rounded-full object-cover transition group-hover:scale-105 ${dark ? 'ring-white/10' : 'ring-primary/5 dark:ring-white/10'}" />`
+        : `<span class="mx-auto grid ${avatarClass} place-items-center rounded-full bg-gradient-to-br from-accent to-yellow-200 font-display ${big ? 'text-2xl' : 'text-base'} font-semibold text-primary transition group-hover:scale-105 ${dark ? 'ring-white/10' : 'ring-primary/5 dark:ring-white/10'}">${initials}</span>`}
+        <h3 class="${big ? 'mt-5' : 'mt-2.5'} ${cfg.nameSize} font-heading font-semibold ${dark ? 'text-white' : 'text-primary dark:text-white'}">${name}</h3>
+        <p class="mt-1 ${cfg.metaSize} text-accent">${desig}</p>
+        <p class="mt-1 ${cfg.metaSize} ${dark ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}">${univ} · ${country}</p>
+        <p class="mt-auto self-center rounded-full pt-3 ${big ? 'px-4 py-1.5' : 'px-2.5 py-1'} ${cfg.tagSize} ${dark
         ? 'bg-white/5 text-slate-300 ring-1 ring-white/10'
         : 'bg-primary/5 text-slate-600 ring-1 ring-slate-100 dark:bg-white/5 dark:text-slate-300 dark:ring-white/10'}">${area}</p>
       </article>`;
     };
 
-    const injectSpeakerGroup = (wrapperId, list, dark, swiper = false, size = false) => {
+    const injectSpeakerGroup = (wrapperId, list, dark, swiper = false, sizeKey = 'compact') => {
       const el = $(wrapperId);
       if (!el) return;
-      const cards = list.map(speakerCard(dark, size));
+      const cards = list.map(speakerCard(dark, sizeKey));
       el.innerHTML = swiper
         ? cards.map((card) => `<div class="swiper-slide h-auto">${card}</div>`).join('')
         : cards.join('');
@@ -1950,7 +1978,7 @@
     const injectSpeakers = () => {
       injectSpeakerGroup('#speakers-wrapper', SPEAKERS, true, false, 'featured');
       injectSpeakerGroup('#plenary-wrapper', PLENARY_SPEAKERS, false, false, 'large');
-      injectSpeakerGroup('#invited-wrapper', INVITED_SPEAKERS, true);
+      injectSpeakerGroup('#invited-wrapper', INVITED_SPEAKERS, true, false, 'large');
       injectSpeakerGroup('#advisors-wrapper', ADVISORS, false, true);
     };
 
