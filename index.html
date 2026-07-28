@@ -782,16 +782,16 @@
                     Health Science, and Sustainable Technological Innovation.</dd>
                 </div>
               </div>
-              <div class="flex gap-4">
-                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent/10 text-accent"><i
-                    class="bi bi-lightbulb text-lg" aria-hidden="true"></i></span>
-                <div>
+              <!-- <div class="flex gap-4">
+                 <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent/10 text-accent"><i -->
+                    <!-- class="bi bi-lightbulb text-lg" aria-hidden="true"></i></span> -->
+                <!-- <div>
                   <dt class="font-heading font-semibold text-primary dark:text-white">Conference Theme</dt>
                   <dd class="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">“Intelligent Systems for a
                     Sustainable Tomorrow” - advancing technology that serves society, from smart agriculture to medical
                     AI.</dd>
-                </div>
-              </div>
+                </div> 
+              </div> -->
               <div class="flex gap-4">
                 <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent/10 text-accent"><i
                     class="bi bi-eye text-lg" aria-hidden="true"></i></span>
@@ -832,7 +832,7 @@
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Conference Tracks</span>
           <h2 class="mt-4 font-display text-3xl font-semibold text-primary dark:text-white sm:text-4xl">Twenty tracks.
-            One frontier.</h2>
+            Six Sub-themes.</h2>
           <p class="mt-4 text-slate-600 dark:text-slate-400">Submit your original work to any of the following technical
             tracks.</p>
         </div>
@@ -1609,11 +1609,12 @@
     // TODO: replace theme descriptions if the tracks change
     const THEMES = [
       ['bi-cpu', 'Computational Science and Artificial Intelligence', 'High-performance computing, intelligent systems and data-driven solutions across disciplines.'],
+      ['bi-chat-square-text', 'Sustainable Technological Innovation', 'Green technologies, renewable energy and engineering for a sustainable future.'],
       ['bi-diagram-3', 'Biotechnology', 'Genetic engineering, bioprocessing and molecular innovations for industry, agriculture and medicine.'],
       ['bi-layers', 'Biodiversity', 'Conservation science, ecosystem monitoring and the sustainable use of biological resources.'],
       ['bi-bar-chart-line', 'Environment', 'Climate change, pollution control, and environmental monitoring and management.'],
       ['bi-eye', 'Health Science', 'Public health, diagnostics, therapeutics and translational biomedical research.'],
-      ['bi-chat-square-text', 'Sustainable Technological Innovation', 'Green technologies, renewable energy and engineering for a sustainable future.'],
+    
     ];
 
     // Keynote speaker - Inaugural Session (Day 1)
@@ -1623,18 +1624,19 @@
 
     // Plenary speakers I-XII (Day 1 & Day 2 thematic tracks)
     const PLENARY_SPEAKERS = [
-      ['Prof. Amlan Chakraborty', 'Director, A.K. Choudhury School of Information Technology', 'University of Calcutta', 'India', 'Artificial Intelligence for Sustainable Development', 'AC', 'website_images/plenary_speakers/Prof. Amlan Chakraborty.jpeg'],
-      ['Prof. Samit Kumar Ray', 'Ex-Director, S.N. Bose National Centre for Basic Sciences', 'IIT Kharagpur', 'India', 'Emerging Materials for Photonic & Energy Harvesting Devices', 'SR', 'website_images/plenary_speakers/Prof. Samit Kumar Ray.jpeg'],
-      ['Prof. Lal Mervin Dharmasiri', 'Professor', 'University of Kelaniya', 'Sri Lanka', 'Topic to be announced', 'LD', 'website_images/plenary_speakers/Prof. Lal Mervin Dharmasiri.jpeg'],
       ['Prof. Csaba Vágvölgyi', 'Professor', 'University of Szeged', 'Hungary', 'Mucormycosis', 'CV', 'website_images/plenary_speakers/Prof. Csaba Vágvölgyi.jpeg'],
-      ['Prof. Chakravarthula Manoharachary', 'Department of Botany', 'Osmania University', 'India', 'Microbial & Technological Innovations for Human Welfare and Environmental Sustainability', 'CM', 'website_images/plenary_speakers/Prof. Chakravarthula Manoharachary.jpeg'],
-      ['Dr. Bhaskar Saha', 'National Professor', 'CCRH, Ministry of AYUSH', 'India', 'Science & Technology in Interdisciplinary Contribution to Human Health and Environment', 'BS', 'website_images/plenary_speakers/Dr. Bhaskar Saha.jpeg'],
+      ['Prof. Lal Mervin Dharmasiri', 'Professor', 'University of Kelaniya', 'Sri Lanka', 'Topic to be announced', 'LD', 'website_images/plenary_speakers/Prof. Lal Mervin Dharmasiri.jpeg'],
       ['Dr. Srikumar Chattopadhyay', 'Scientist - G', 'Centre for Earth Science Studies', 'India', 'Topic to be announced', 'SC', 'website_images/plenary_speakers/Dr. Srikumar Chattopadhyay.jpeg'],
-      ['Prof. Santanu Bhattacharya', 'Director', 'IISER Tirupati', 'India', 'Topic to be announced', 'SB', 'website_images/plenary_speakers/Prof. Santanu Bhattacharya.jpeg'],
-      ['Dr. Somnath Dutta', 'Retired Scientist G IMD, Former Head Regional Meteorological Center (RMC) IMD', 'Alipore, Kolkata', 'India', 'Climate Service for Health', 'SD', 'website_images/plenary_speakers/Dr. Somenath Dutta.jpeg'],
       ['Prof. Subrata Chattopadhyay', 'Former Director, Bioscience Group', 'BARC, Mumbai', 'India', 'Cool Societal Solutions by Hot Atoms', 'SC', 'website_images/plenary_speakers/Prof. Subrata Chattopadhyay.jpeg'],
       ['Prof. Sushil Kumar Dutta', 'Professor', 'Utkal University, Odisha', 'India', 'Why We Find So Many Undescribed Amphibians in India?', 'SD', 'website_images/plenary_speakers/Prof. Sushil Kumar Dutta.jpeg'],
+      ['Prof. Chakravarthula Manoharachary', 'Department of Botany', 'Osmania University', 'India', 'Microbial & Technological Innovations for Human Welfare and Environmental Sustainability', 'CM', 'website_images/plenary_speakers/Prof. Chakravarthula Manoharachary.jpeg'],
+      ['Prof. Santanu Bhattacharya', 'Director', 'IISER Tirupati', 'India', 'Topic to be announced', 'SB', 'website_images/plenary_speakers/Prof. Santanu Bhattacharya.jpeg'],
+      ['Dr. Somenath Dutta', 'Retired Scientist G IMD, Former Head Regional Meteorological Center (RMC) IMD', 'Alipore, Kolkata', 'India', 'Climate Service for Health', 'SD', 'website_images/plenary_speakers/Dr. Somenath Dutta.jpeg'],
       ['Prof. Arnab Sen', 'Vice-Chancellor', 'Raiganj University', 'India', 'Genomics of Actinobacteria', 'AS', 'website_images/plenary_speakers/Prof. Arnab Sen.jpeg'],
+      ['Dr. Bhaskar Saha', 'National Professor', 'CCRH, Ministry of AYUSH', 'India', 'Science & Technology in Interdisciplinary Contribution to Human Health and Environment', 'BS', 'website_images/plenary_speakers/Dr. Bhaskar Saha.jpeg'],
+      ['Prof. Amlan Chakraborty', 'Director, A.K. Choudhury School of Information Technology', 'University of Calcutta', 'India', 'Artificial Intelligence for Sustainable Development', 'AC', 'website_images/plenary_speakers/Prof. Amlan Chakraborty.jpeg'],
+      ['Prof. Samit Kumar Ray', 'Ex-Director, S.N. Bose National Centre for Basic Sciences', 'IIT Kharagpur', 'India', 'Emerging Materials for Photonic & Energy Harvesting Devices', 'SR', 'website_images/plenary_speakers/Prof. Samit Kumar Ray.jpeg'],
+      
     ];
 
     // Invited speakers 1-14 (Tracks A-F, Day 1 & Day 2 parallel sessions)
@@ -1671,8 +1673,6 @@
         ['Prof. Madhumangal Pal', 'Director of IQAC, Vidyasagar University', 'bi-star-half'],
         ['Prof. Ajay Kumar Misra', 'Director of R & D Cell, Vidyasagar University', 'bi-star-half']
       ]],
-      ['Conference Chair', [['Prof. Name Surname', 'Dept. of Computer Science, Vidyasagar University', 'bi-person-badge']]],
-      ['Conference Co-Chair', [['Dr. Name Surname', 'Dept. of Computer Science, Vidyasagar University', 'bi-person-badge']]],
       ['Organizing Chair', [['Prof. Paresh Chandra Jana', 'Dean, Faculty of Science, Vidyasagar University', 'bi-diagram-3']]],
       ['Co-Chair (s)', [
         ['Head', 'Dept. of Anthropology<br>Dept. of Applied Mathematics<br>Dept. of Fishery Sciences<br>Dept. of Bio-Medical Laboratory Science & Management<br>Dept. of Bio Technology<br>Dept. of Botany & Forestry<br>Dept. of Chemistry & Chemical Technology<br>Dept. of Computer Science<br>Dept. of Electronics<br>Dept. of Human Physiology<br>Dept. of Microbiology<br>Dept. of Physics<br>Dept. of Remote Sensing & GIS<br>Dept. of Zoology<br>Vidyasagar University', 'bi-people']
@@ -1685,12 +1685,13 @@
       ['Treasurer', [['Prof. Sandip K. Sinha', 'Vidyasagar University', 'bi-cash-coin']]],
       ['Jt. Treasurer', [['Dr. Joydev Maity', 'Vidyasagar University', 'bi-cash-coin']]],
       ['Chair (s), Scientific Programme Committee', [
-        ['Track 1: Biotechnology', 'Chair(s): Prof. Keshab C. Mondal', 'bi-flask'],
-        ['Track 2: Biodiversity', 'Chair(s): Prof. Amal K. Mondal, Prof. Subrata K. De', 'bi-tree'],
-        ['Track 3: Environment', 'Chair(s): Prof. Ramkrishna Maity, Dr. Jatisankar Bandyopadhyay', 'bi-globe2'],
-        ['Track 4: Computational Science & Artificial Intelligence', 'Chair(s): Prof. Biswapati Jana, Prof. Shyamal K. Mandal', 'bi-cpu'],
-        ['Track 5: Health Science', 'Chair(s): Prof. Sujata Maity Chowdhury, Prof. Sandip Chatterjee', 'bi-heart-pulse'],
-        ['Track 6: Sustainable Technological Innovation', 'Chair(s): Prof. Brajagopal Bag, Prof. Swarnendu Sarkar', 'bi-lightbulb']
+        ['Computational Science & Artificial Intelligence', 'Chair(s): Prof. Shyamal K. Mandal, Prof. Biswapati Jana and Prof. Sutanu Dutta', 'bi-cpu'],
+        ['Sustainable Technological Innovation', 'Chair(s): Prof. Brajagopal Bag and Prof. Swarnendu Sarkar', 'bi-lightbulb'],
+        ['Biotechnology', 'Chair(s): Prof. Keshab C. Mondal and Dr. Manoj K. Pati', 'bi-heart-pulse'],
+        ['Environment', 'Chair(s):  Prof Ramkrishna Maity and Dr. Jatisankar Bandyopadhyay', 'bi-globe2'],        
+        ['Biodiversity', 'Chair(s): Prof Amal K. Mondal and Prof. Subrata K. De', 'bi-tree'],        
+        ['Health Science', 'Chair(s): Prof. Sujata Maity Chowdhury, Prof Sandip Chattopadhyay and Prof Dipak K Midya', 'bi-heart-pulse'],        
+      
       ]],
       ['Chair (s), International/National Resource/Guest Sub-Committee', [
         ['Prof. Sujata Maity Chowdhury', 'Vidyasagar University', 'bi-globe2'],
