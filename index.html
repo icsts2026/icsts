@@ -1951,18 +1951,18 @@
       const big = sizeKey !== 'compact';
       const avatarClass = `h-[${cfg.avatarPx}px] w-[${cfg.avatarPx}px] shrink-0 ${big ? 'ring-4' : 'ring-2'}`;
       return `
-      <article class="tilt group flex h-full flex-col ${cardWidthClass(cfg)} ${cfg.padding} ${big ? 'rounded-3xl' : 'rounded-2xl'} text-center backdrop-blur transition ${dark
-        ? 'bg-white/5 ring-1 ring-white/10 hover:ring-accent/60'
-        : 'bg-white shadow-soft ring-1 ring-slate-100 hover:shadow-softlg dark:bg-nightcard dark:ring-white/10'}">
+      <article class="tilt group flex flex-col ${cardWidthClass(cfg)} ${cfg.padding} ${big ? 'rounded-3xl' : 'rounded-2xl'} text-center backdrop-blur transition ${dark
+          ? 'bg-white/5 ring-1 ring-white/10 hover:ring-accent/60'
+          : 'bg-white shadow-soft ring-1 ring-slate-100 hover:shadow-softlg dark:bg-nightcard dark:ring-white/10'}">
         ${photo
-        ? `<img src="${encodeURI(photo)}" alt="${name}" loading="lazy" class="mx-auto ${avatarClass} rounded-full object-cover transition group-hover:scale-105 ${dark ? 'ring-white/10' : 'ring-primary/5 dark:ring-white/10'}" />`
-        : `<span class="mx-auto grid ${avatarClass} place-items-center rounded-full bg-gradient-to-br from-accent to-yellow-200 font-display ${big ? 'text-2xl' : 'text-base'} font-semibold text-primary transition group-hover:scale-105 ${dark ? 'ring-white/10' : 'ring-primary/5 dark:ring-white/10'}">${initials}</span>`}
+          ? `<img src="${encodeURI(photo)}" alt="${name}" loading="lazy" class="mx-auto ${avatarClass} rounded-full object-cover transition group-hover:scale-105 ${dark ? 'ring-white/10' : 'ring-primary/5 dark:ring-white/10'}" />`
+          : `<span class="mx-auto grid ${avatarClass} place-items-center rounded-full bg-gradient-to-br from-accent to-yellow-200 font-display ${big ? 'text-2xl' : 'text-base'} font-semibold text-primary transition group-hover:scale-105 ${dark ? 'ring-white/10' : 'ring-primary/5 dark:ring-white/10'}">${initials}</span>`}
         <h3 class="${big ? 'mt-5' : 'mt-2.5'} ${cfg.nameSize} font-heading font-semibold ${dark ? 'text-white' : 'text-primary dark:text-white'}">${name}</h3>
         <p class="mt-1 ${cfg.metaSize} text-accent">${desig}</p>
         <p class="mt-1 ${cfg.metaSize} ${dark ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}">${univ} · ${country}</p>
         <p class="mt-auto self-center rounded-full pt-3 ${big ? 'px-4 py-1.5' : 'px-2.5 py-1'} ${cfg.tagSize} ${dark
-        ? 'bg-white/5 text-slate-300 ring-1 ring-white/10'
-        : 'bg-primary/5 text-slate-600 ring-1 ring-slate-100 dark:bg-white/5 dark:text-slate-300 dark:ring-white/10'}">${area}</p>
+          ? 'bg-white/5 text-slate-300 ring-1 ring-white/10'
+          : 'bg-primary/5 text-slate-600 ring-1 ring-slate-100 dark:bg-white/5 dark:text-slate-300 dark:ring-white/10'}">${area}</p>
       </article>`;
     };
 
