@@ -1400,7 +1400,7 @@
       <img id="lightbox-img" src="" alt="" class="max-h-[86vh] max-w-full rounded-2xl shadow-softlg" />
     </div>
 
-    <!-- ==================== STATISTICS ==================== -->
+    <!-- ==================== STATISTICS (disabled) ====================
     <section id="stats" class="relative overflow-hidden bg-primary py-24 text-white dark:bg-[#081430]">
       <div class="orb h-[300px] w-[300px] -right-20 -top-20 bg-accent/30" aria-hidden="true"></div>
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
@@ -1444,7 +1444,7 @@
           </div>
         </div>
 
-        <!-- Chart.js: participation mix -->
+        Chart.js: participation mix
         <div
           class="mx-auto mt-14 grid max-w-4xl items-center gap-10 rounded-3xl bg-white/5 p-8 backdrop-blur md:grid-cols-2"
           data-aos="zoom-in">
@@ -1470,8 +1470,9 @@
         </div>
       </div>
     </section>
+    -->
 
-    <!-- ==================== TESTIMONIALS ==================== -->
+    <!-- ==================== TESTIMONIALS (disabled) ====================
     <section id="testimonials" class="py-24">
       <div class="mx-auto max-w-5xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
@@ -1479,13 +1480,14 @@
           <h2 class="mt-4 font-display text-3xl font-semibold text-primary dark:text-white sm:text-4xl">What Delegates
             Say</h2>
         </div>
-        <!-- TODO: replace with genuine testimonials collected after previous editions -->
+        TODO: replace with genuine testimonials collected after previous editions
         <div class="swiper testimonial-swiper mt-14 !pb-14" data-aos="fade-up">
-          <div class="swiper-wrapper" id="testimonials-wrapper"><!-- injected by JS --></div>
+          <div class="swiper-wrapper" id="testimonials-wrapper">injected by JS</div>
           <div class="swiper-pagination !bottom-0"></div>
         </div>
       </div>
     </section>
+    -->
 
     <!-- ==================== FAQ ==================== -->
     <section id="faq" class="bg-white py-24 dark:bg-[#081430]">
@@ -1788,12 +1790,12 @@
       ['Treasurer', [['Prof. Sandip K. Sinha', 'Vidyasagar University', 'bi-cash-coin']]],
       ['Jt. Treasurer', [['Dr. Joydev Maity', 'Vidyasagar University', 'bi-cash-coin']]],
       ['Chair (s), Scientific Programme Committee', [
-        ['Computational Science & Artificial Intelligence', 'Chair(s): Prof. Shyamal K. Mandal, Prof. Biswapati Jana and Prof. Sutanu Dutta', 'bi-cpu'],
-        ['Sustainable Technological Innovation', 'Chair(s): Prof. Brajagopal Bag and Prof. Swarnendu Sarkar', 'bi-lightbulb'],
-        ['Biotechnology', 'Chair(s): Prof. Keshab C. Mondal and Dr. Manoj K. Pati', 'bi-heart-pulse'],
-        ['Environment', 'Chair(s):  Prof Ramkrishna Maity and Dr. Jatisankar Bandyopadhyay', 'bi-globe2'],
-        ['Biodiversity', 'Chair(s): Prof Amal K. Mondal and Prof. Subrata K. De', 'bi-tree'],
-        ['Health Science', 'Chair(s): Prof. Sujata Maity Chowdhury, Prof Sandip Chattopadhyay and Prof Dipak K Midya', 'bi-heart-pulse'],
+        ['Computational Science & Artificial Intelligence', 'Chair(s): <br> Prof. Shyamal K. Mandal, <br> Prof. Biswapati Jana, <br> Prof. Sutanu Dutta', 'bi-cpu'],
+        ['Sustainable Technological Innovation', 'Chair(s): <br> Prof. Brajagopal Bag, <br> Prof. Swarnendu Sarkar', 'bi-lightbulb'],
+        ['Biotechnology', 'Chair(s): <br> Prof. Keshab C. Mondal, <br> Dr. Manoj K. Pati', 'bi-heart-pulse'],
+        ['Environment', 'Chair(s):<br> Prof Ramkrishna Maity, <br> Dr. Jatisankar Bandyopadhyay', 'bi-globe2'],
+        ['Biodiversity', 'Chair(s):<br> Prof Amal K. Mondal, <br> Prof. Subrata K. De', 'bi-tree'],
+        ['Health Science', 'Chair(s):<br> Prof. Sujata Maity Chowdhury, <br> Prof Sandip Chattopadhyay, <br> Prof Dipak K Midya', 'bi-heart-pulse'],
 
       ]],
       ['Chair (s), International/National Resource/Guest Sub-Committee', [
@@ -1984,20 +1986,56 @@
       injectSpeakerGroup('#advisors-wrapper', ADVISORS, false, true);
     };
 
+    // Splits an array into chunks of size n, e.g. chunk([1,2,3,4,5], 2) -> [[1,2],[3,4],[5]]
+    const chunk = (arr, n) => {
+      const out = [];
+      for (let i = 0; i < arr.length; i += n) out.push(arr.slice(i, i + n));
+      return out;
+    };
+
     const injectCommittee = () => {
+      // layoutCols: how many cards appear per visual row for a given role.
+      // widthCols/extraPx: which card-width formula to use (defaults to layoutCols,
+      // but can be overridden to reuse another role's exact card width — e.g. the
+      // Resource/Guest sub-committee is laid out 2-per-row but sized to match
+      // Organizing Chair's (4-column) card width).
+      const wideRoles = [
+        'Chief Patron', 'Patron (s)', 'Organizing Chair', 'Organising Secretaries', 'Treasurer', 'Jt. Treasurer',
+        'Chair (s), Souvenir & Publications Sub-Committee', 'Chair (s), Registration Sub-Committee',
+        'Chair (s), Finance & Budget Sub-Committee', 'Chair (s), Sponsorship & Advertisement Sub-Committee',
+        'Chair (s), Travel Sub-Committee', 'Chair (s), Reception and Accommodation Sub-Committee',
+        'Chair (s), Refreshment Sub-Committee', 'Chair (s), Venue and Logistics Sub-Committee',
+        'Chair (s), Publicity, Media & Website Sub-Committee', 'Chair (s), Cultural Programme Sub-Committee',
+      ];
+      const layoutColsByRole = {
+        'Co-Chair (s)': 1,
+        'Chair (s), International/National Resource/Guest Sub-Committee': 2,
+        'Chair (s), Scientific Programme Committee': 3,
+      };
+      const widthColsByRole = {
+        'Chair (s), International/National Resource/Guest Sub-Committee': 4,
+      };
+      const widthExtraPxByRole = {
+        'Chair (s), International/National Resource/Guest Sub-Committee': 100,
+      };
+
       $('#committee-grid').innerHTML = COMMITTEE.map(([role, members], gi) => {
-        const wideRoles = ['Chief Patron', 'Patron (s)', 'Organizing Chair', 'Organising Secretaries', 'Treasurer', 'Jt. Treasurer'];
-        const cols = role === 'Co-Chair (s)' ? 1 : 4;
-        const extraPx = wideRoles.includes(role) ? 100 : 0;
+        const layoutCols = layoutColsByRole[role] || 4;
+        const widthCols = widthColsByRole[role] || layoutCols;
+        const extraPx = widthExtraPxByRole[role] ?? (wideRoles.includes(role) ? 100 : 0);
+        const cardHtml = ([name, aff, icon]) => `
+            <article class="tilt ${cardWidthClass({ columns: widthCols, extraPx })} flex items-center gap-5 rounded-3xl p-6 sm:p-7 bg-white shadow-soft transition hover:shadow-softlg dark:bg-nightcard">
+              <span class="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-primary/5 text-primary dark:bg-white/5 dark:text-accent"><i class="bi ${icon} text-2xl" aria-hidden="true"></i></span>
+              <div><p class="font-heading text-base font-semibold text-primary dark:text-white">${name}</p><p class="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">${aff}</p></div>
+            </article>`;
         return `
       <div data-aos="fade-up">
         <h3 class="flex items-center justify-center gap-3 font-heading text-sm font-semibold uppercase tracking-[.22em] text-accent"><span class="h-px w-8 bg-accent"></span>${role}<span class="h-px w-8 bg-accent"></span></h3>
-        <div class="mt-6 flex flex-wrap items-stretch justify-center gap-6">
-          ${members.map(([name, aff, icon]) => `
-            <article class="tilt ${cardWidthClass({ columns: cols, extraPx })} flex items-center gap-5 rounded-3xl p-6 sm:p-7 bg-white shadow-soft transition hover:shadow-softlg dark:bg-nightcard">
-              <span class="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-primary/5 text-primary dark:bg-white/5 dark:text-accent"><i class="bi ${icon} text-2xl" aria-hidden="true"></i></span>
-              <div><p class="font-heading text-base font-semibold text-primary dark:text-white">${name}</p><p class="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">${aff}</p></div>
-            </article>`).join('')}
+        <div class="mt-6 space-y-6">
+          ${chunk(members, layoutCols).map((row) => `
+          <div class="flex flex-wrap items-stretch justify-center gap-6">
+            ${row.map(cardHtml).join('')}
+          </div>`).join('')}
         </div>
       </div>`;
       }).join('');
@@ -2047,7 +2085,9 @@
     };
 
     const injectTestimonials = () => {
-      $('#testimonials-wrapper').innerHTML = TESTIMONIALS.map(([quote, name, role, initials]) => `
+      const el = $('#testimonials-wrapper');
+      if (!el) return;
+      el.innerHTML = TESTIMONIALS.map(([quote, name, role, initials]) => `
       <div class="swiper-slide h-auto">
         <blockquote class="flex h-full flex-col rounded-3xl bg-white p-8 shadow-soft dark:bg-nightcard">
           <i class="bi bi-quote text-4xl text-accent" aria-hidden="true"></i>
@@ -2208,6 +2248,7 @@
 
     const initChart = () => {
       const canvas = $('#mixChart');
+      if (!canvas) return;
       const obs = new IntersectionObserver((entries) => entries.forEach(e => {
         if (!e.isIntersecting || !window.Chart) return;
         obs.unobserve(canvas);
@@ -2305,13 +2346,15 @@
             a11y: { enabled: true }
           });
         }
-        new Swiper('.testimonial-swiper', {
-          slidesPerView: 1, spaceBetween: 24, loop: true, grabCursor: true,
-          autoplay: { delay: 5200, disableOnInteraction: false },
-          pagination: { el: '.testimonial-swiper .swiper-pagination', clickable: true },
-          breakpoints: { 768: { slidesPerView: 2 } },
-          a11y: { enabled: true }
-        });
+        if ($('.testimonial-swiper')) {
+          new Swiper('.testimonial-swiper', {
+            slidesPerView: 1, spaceBetween: 24, loop: true, grabCursor: true,
+            autoplay: { delay: 5200, disableOnInteraction: false },
+            pagination: { el: '.testimonial-swiper .swiper-pagination', clickable: true },
+            breakpoints: { 768: { slidesPerView: 2 } },
+            a11y: { enabled: true }
+          });
+        }
       }
     });
   </script>
