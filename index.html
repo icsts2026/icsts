@@ -1770,13 +1770,13 @@
 
     // TODO: replace every name/affiliation with the official committee list
     const COMMITTEE = [
-      ['Chief Patron', [['Prof. Dipak Kumar Kar', 'Hon’ble Vice-Chancellor, Vidyasagar University', 'bi-star-fill']]],
+      ['Chief Patron', [['Prof. Dipak Kumar Kar', 'Hon’ble Vice-Chancellor, <br> Vidyasagar University', 'bi-star-fill']]],
       ['Patron (s)', [
-        ['Prof. Paresh Chandra Jana', 'Dean, Faculty of Arts & Commerce, Vidyasagar University', 'bi-star-half'],
-        ['Prof. Madhumangal Pal', 'Director of IQAC, Vidyasagar University', 'bi-star-half'],
-        ['Prof. Ajay Kumar Misra', 'Director of R & D Cell, Vidyasagar University', 'bi-star-half']
+        ['Prof. Paresh Chandra Jana', 'Dean, Faculty of Arts & Commerce, <br> Vidyasagar University', 'bi-star-half'],
+        ['Prof. Madhumangal Pal', 'Director of IQAC, <br> Vidyasagar University', 'bi-star-half'],
+        ['Prof. Ajay Kumar Misra', 'Director of R & D Cell, <br> Vidyasagar University', 'bi-star-half']
       ]],
-      ['Organizing Chair', [['Prof. Paresh Chandra Jana', 'Dean, Faculty of Science, Vidyasagar University', 'bi-diagram-3']]],
+      ['Organizing Chair', [['Prof. Paresh Chandra Jana', 'Dean, Faculty of Science, <br> Vidyasagar University', 'bi-diagram-3']]],
       ['Co-Chair (s)', [
         ['Head', 'Dept. of Anthropology<br>Dept. of Applied Mathematics<br>Dept. of Fishery Sciences<br>Dept. of Bio-Medical Laboratory Science & Management<br>Dept. of Bio Technology<br>Dept. of Botany & Forestry<br>Dept. of Chemistry & Chemical Technology<br>Dept. of Computer Science<br>Dept. of Electronics<br>Dept. of Human Physiology<br>Dept. of Microbiology<br>Dept. of Physics<br>Dept. of Remote Sensing & GIS<br>Dept. of Zoology<br>Vidyasagar University', 'bi-people']
       ]],
@@ -1936,14 +1936,16 @@
 
     // Turns a size config into a Tailwind width class so N cards fit per row
     // (2 per row on small screens, N per row on large screens), matching the
-    // wrapper's gap-6 (1.5rem) gap.
+    // wrapper's gap-6 (1.5rem) gap. Optional cfg.extraPx nudges the card a bit
+    // wider than its strict N-column share, without changing N itself.
     const cardWidthClass = (cfg) => {
       if (cfg.maxWidthPx) return `w-full max-w-[${cfg.maxWidthPx}px]`;
       const gapRem = 1.5;
       const pct = (n) => (100 / n).toFixed(4);
       const gap = (n) => ((n - 1) / n * gapRem).toFixed(4);
+      const boost = cfg.extraPx ? `_+_${cfg.extraPx}px` : '';
       const smCols = Math.min(cfg.columns, 2);
-      return `w-full sm:w-[calc(${pct(smCols)}%_-_${gap(smCols)}rem)] lg:w-[calc(${pct(cfg.columns)}%_-_${gap(cfg.columns)}rem)]`;
+      return `w-full sm:w-[calc(${pct(smCols)}%_-_${gap(smCols)}rem${boost})] lg:w-[calc(${pct(cfg.columns)}%_-_${gap(cfg.columns)}rem${boost})]`;
     };
 
     const speakerCard = (dark, sizeKey = 'compact') => ([name, desig, univ, country, area, initials, photo]) => {
@@ -1983,17 +1985,22 @@
     };
 
     const injectCommittee = () => {
-      $('#committee-grid').innerHTML = COMMITTEE.map(([role, members], gi) => `
+      $('#committee-grid').innerHTML = COMMITTEE.map(([role, members], gi) => {
+        const wideRoles = ['Chief Patron', 'Patron (s)', 'Organizing Chair', 'Organising Secretaries', 'Treasurer', 'Jt. Treasurer'];
+        const cols = role === 'Co-Chair (s)' ? 1 : 4;
+        const extraPx = wideRoles.includes(role) ? 100 : 0;
+        return `
       <div data-aos="fade-up">
-        <h3 class="flex items-center gap-3 font-heading text-sm font-semibold uppercase tracking-[.22em] text-accent"><span class="h-px w-8 bg-accent"></span>${role}</h3>
-        <div class="mt-5 grid gap-5 ${role === 'Co-Chair (s)' ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-4'}">
+        <h3 class="flex items-center justify-center gap-3 font-heading text-sm font-semibold uppercase tracking-[.22em] text-accent"><span class="h-px w-8 bg-accent"></span>${role}<span class="h-px w-8 bg-accent"></span></h3>
+        <div class="mt-6 flex flex-wrap items-stretch justify-center gap-6">
           ${members.map(([name, aff, icon]) => `
-            <article class="tilt flex items-center gap-4 rounded-3xl bg-white p-5 shadow-soft transition hover:shadow-softlg dark:bg-nightcard">
-              <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary/5 text-primary dark:bg-white/5 dark:text-accent"><i class="bi ${icon} text-lg" aria-hidden="true"></i></span>
-              <div><p class="font-heading text-sm font-semibold text-primary dark:text-white">${name}</p><p class="mt-0.5 text-xs leading-relaxed ${role === 'Co-Chair (s)' ? 'whitespace-nowrap' : ''} text-slate-500 dark:text-slate-400">${aff}</p></div>
+            <article class="tilt ${cardWidthClass({ columns: cols, extraPx })} flex items-center gap-5 rounded-3xl p-6 sm:p-7 bg-white shadow-soft transition hover:shadow-softlg dark:bg-nightcard">
+              <span class="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-primary/5 text-primary dark:bg-white/5 dark:text-accent"><i class="bi ${icon} text-2xl" aria-hidden="true"></i></span>
+              <div><p class="font-heading text-base font-semibold text-primary dark:text-white">${name}</p><p class="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">${aff}</p></div>
             </article>`).join('')}
         </div>
-      </div>`).join('');
+      </div>`;
+      }).join('');
     };
 
     const injectPricing = () => {
