@@ -117,6 +117,25 @@
       --primary: #0B1F4D;
     }
 
+    /* ============================================================
+       NAVBAR TEXT SIZES — tweak any value below anytime to resize
+       the navbar text. Every navbar element reads from these, so
+       there's nothing to change in the HTML further down.
+       ============================================================ */
+    :root {
+      --nav-logo-size: 21px;      /* "ICSTS 2026" wordmark next to the logo */
+      --nav-logo-sub-size: 13px;  /* "Vidyasagar University" subtitle under it */
+      --nav-link-size: 16px;      /* desktop menu links + the "More" dropdown */
+      --nav-btn-size: 16px;       /* "Submit Paper" button */
+      --nav-mobile-size: 18px;    /* mobile drawer (hamburger) menu links */
+    }
+
+    .nav-logo-text { font-size: var(--nav-logo-size); }
+    .nav-logo-sub { font-size: var(--nav-logo-sub-size); }
+    #nav-links { font-size: var(--nav-link-size); }
+    .nav-submit-btn { font-size: var(--nav-btn-size); }
+    #drawer nav { font-size: var(--nav-mobile-size); }
+
     html {
       scroll-padding-top: 92px;
     }
@@ -614,16 +633,16 @@
           <!-- TODO: replace with the official conference logo -->
           <span class="leading-tight">
             <span
-              class="block font-heading font-700 font-bold text-primary dark:text-white text-lg tracking-tight">ICSTS
+              class="nav-logo-text block font-heading font-700 font-bold text-primary dark:text-white tracking-tight">ICSTS
               <span class="text-accent">2026</span></span>
-            <span class="block text-[11px] font-medium tracking-wide text-slate-500 dark:text-slate-400">Vidyasagar
+            <span class="nav-logo-sub block font-medium tracking-wide text-slate-500 dark:text-slate-400">Vidyasagar
               University</span>
           </span>
         </a>
 
         <!-- Desktop links -->
         <ul
-          class="hidden xl:flex items-center gap-6 text-[13.5px] font-heading font-medium text-slate-700 dark:text-slate-300"
+          class="hidden xl:flex items-center gap-6 font-heading font-medium text-slate-700 dark:text-slate-300"
           id="nav-links">
           <li><a class="nav-link" href="#home">Home</a></li>
           <li><a class="nav-link" href="#about">About</a></li>
@@ -666,7 +685,7 @@
             <i class="bi bi-sun hidden text-lg dark:inline" aria-hidden="true"></i>
           </button>
           <a href="https://forms.gle/WyL7nyeAxo48SYnn7" target="_blank" rel="noopener"
-            class="btn-ripple hidden sm:inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-heading text-sm font-semibold text-primary shadow-gold transition hover:brightness-110 hover:-translate-y-0.5">
+            class="nav-submit-btn btn-ripple hidden sm:inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-heading font-semibold text-primary shadow-gold transition hover:brightness-110 hover:-translate-y-0.5">
             Submit Paper <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
           </a>
           <button id="drawer-open"
@@ -691,7 +710,7 @@
         class="grid h-9 w-9 place-items-center rounded-full hover:bg-surface dark:hover:bg-white/5"
         aria-label="Close menu"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
     </div>
-    <nav class="flex flex-col gap-1 p-4 font-heading text-[15px]" aria-label="Mobile navigation">
+    <nav class="flex flex-col gap-1 p-4 font-heading" aria-label="Mobile navigation">
       <a href="#home" class="drawer-link rounded-xl px-4 py-3 hover:bg-surface dark:hover:bg-white/5">Home</a>
       <a href="#about" class="drawer-link rounded-xl px-4 py-3 hover:bg-surface dark:hover:bg-white/5">About</a>
       <a href="#committee" class="drawer-link rounded-xl px-4 py-3 hover:bg-surface dark:hover:bg-white/5">Committee</a>
