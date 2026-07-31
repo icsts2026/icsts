@@ -1002,18 +1002,28 @@
       </div>
     </section>
 
-    <!-- ==================== KEYNOTE SPEAKERS ==================== -->
+    <!-- ==================== KEYNOTE & VALEDICTORY ==================== -->
     <section id="speakers" class="bg-primary py-24 text-white dark:bg-[#081430]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
-        <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
-          <!-- <span class="eyebrow justify-center">Voices of the Field</span> -->
-          <h2 class="mt-4 font-display text-3xl font-semibold sm:text-4xl">Keynote Address</h2>
-          <!-- <p class="mt-4 text-slate-300">Distinguished researchers shaping the future of computing.</p> -->
-        </div>
+        <div class="flex flex-col items-center gap-14 lg:flex-row lg:items-stretch lg:justify-center lg:gap-0">
 
-        <!-- TODO: replace names, designations, photos and social links with confirmed speakers -->
-        <div id="speakers-wrapper" class="mt-14 flex flex-wrap justify-center">
-          <!-- cards injected by JS -->
+          <div class="flex flex-col items-center text-center" data-aos="fade-up">
+            <h2 class="font-display text-3xl font-semibold sm:text-4xl">Keynote Address</h2>
+            <!-- TODO: replace names, designations, photos and social links with confirmed speakers -->
+            <div id="speakers-wrapper" class="mt-14 flex flex-wrap justify-center">
+              <!-- cards injected by JS -->
+            </div>
+          </div>
+
+          <div class="my-10 h-px w-32 shrink-0 self-center bg-accent/60 lg:my-0 lg:mx-12 lg:h-auto lg:w-px lg:self-stretch"></div>
+
+          <div class="flex flex-col items-center text-center" data-aos="fade-up">
+            <h2 class="font-display text-3xl font-semibold sm:text-4xl">Valedictory Speaker</h2>
+            <div id="valedictory-wrapper" class="mt-14 flex flex-wrap justify-center">
+              <!-- cards injected by JS -->
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -1047,19 +1057,6 @@
 
         <!-- TODO: replace names, designations and photos with confirmed invited speakers -->
         <div id="invited-wrapper" class="mt-14 flex flex-wrap items-stretch justify-center gap-6">
-          <!-- cards injected by JS -->
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== VALEDICTORY SPEAKER ==================== -->
-    <section id="valedictory-speaker" class="bg-primary py-24 text-white dark:bg-[#081430]">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6">
-        <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
-          <h2 class="mt-4 font-display text-3xl font-semibold sm:text-4xl">Valedictory Speaker</h2>
-        </div>
-
-        <div id="valedictory-wrapper" class="mt-14 flex flex-wrap items-stretch justify-center gap-6">
           <!-- cards injected by JS -->
         </div>
       </div>
@@ -1780,7 +1777,7 @@
 
     // Valedictory speaker
     const VALEDICTORY_SPEAKER = [
-      ["His Holiness, Hon'ble Ven. Dr. Thirasattho Thero", 'Spiritual Master, IEP Peace Ambassador', 'Sydney', 'Australia', '', 'TT', ''],
+      ["His Holiness, Hon'ble Ven. Dr. Thirasattho Thero", 'Spiritual Master, IEP Peace Ambassador', 'Sydney', 'Australia', '', 'TT', 'website_images/valedictory_speaker/Valedictory Speaker.jpeg'],
     ];
 
     const ADVISORY_COMMITTEE = [
@@ -2031,7 +2028,7 @@
       injectSpeakerGroup('#speakers-wrapper', SPEAKERS, true, false, 'featured');
       injectSpeakerGroup('#plenary-wrapper', PLENARY_SPEAKERS, false, false, 'large');
       injectSpeakerGroup('#invited-wrapper', INVITED_SPEAKERS, true, false, 'large');
-      injectSpeakerGroup('#valedictory-wrapper', VALEDICTORY_SPEAKER, true, false, 'large');
+      injectSpeakerGroup('#valedictory-wrapper', VALEDICTORY_SPEAKER, true, false, 'featured');
       injectSpeakerGroup('#advisors-wrapper', ADVISORS, false, true);
     };
 
