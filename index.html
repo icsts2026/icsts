@@ -123,18 +123,37 @@
        there's nothing to change in the HTML further down.
        ============================================================ */
     :root {
-      --nav-logo-size: 21px;      /* "ICSTS 2026" wordmark next to the logo */
-      --nav-logo-sub-size: 13px;  /* "Vidyasagar University" subtitle under it */
-      --nav-link-size: 16px;      /* desktop menu links + the "More" dropdown */
-      --nav-btn-size: 16px;       /* "Submit Paper" button */
-      --nav-mobile-size: 18px;    /* mobile drawer (hamburger) menu links */
+      --nav-logo-size: 21px;
+      /* "ICSTS 2026" wordmark next to the logo */
+      --nav-logo-sub-size: 20px;
+      /* "Vidyasagar University" subtitle under it */
+      --nav-link-size: 16px;
+      /* desktop menu links + the "More" dropdown */
+      --nav-btn-size: 16px;
+      /* "Submit Paper" button */
+      --nav-mobile-size: 18px;
+      /* mobile drawer (hamburger) menu links */
     }
 
-    .nav-logo-text { font-size: var(--nav-logo-size); }
-    .nav-logo-sub { font-size: var(--nav-logo-sub-size); }
-    #nav-links { font-size: var(--nav-link-size); }
-    .nav-submit-btn { font-size: var(--nav-btn-size); }
-    #drawer nav { font-size: var(--nav-mobile-size); }
+    .nav-logo-text {
+      font-size: var(--nav-logo-size);
+    }
+
+    .nav-logo-sub {
+      font-size: var(--nav-logo-sub-size);
+    }
+
+    #nav-links {
+      font-size: var(--nav-link-size);
+    }
+
+    .nav-submit-btn {
+      font-size: var(--nav-btn-size);
+    }
+
+    #drawer nav {
+      font-size: var(--nav-mobile-size);
+    }
 
     html {
       scroll-padding-top: 92px;
@@ -641,8 +660,7 @@
         </a>
 
         <!-- Desktop links -->
-        <ul
-          class="hidden xl:flex items-center gap-6 font-heading font-medium text-slate-700 dark:text-slate-300"
+        <ul class="hidden xl:flex items-center gap-6 font-heading font-medium text-slate-700 dark:text-slate-300"
           id="nav-links">
           <li><a class="nav-link" href="#home">Home</a></li>
           <li><a class="nav-link" href="#about">About</a></li>
@@ -951,7 +969,9 @@
           <p class="mt-4 text-slate-600 dark:text-slate-400">Submit your original work to any of the following technical
             tracks.</p>
         </div>
-        <div id="themes-grid" class="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3"><!-- cards injected by JS --></div>
+        <div id="themes-grid" class="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- cards injected by JS -->
+        </div>
       </div>
     </section>
 
@@ -1034,7 +1054,9 @@
             </div>
           </div>
 
-          <div class="my-10 h-px w-32 shrink-0 self-center bg-accent/60 lg:my-0 lg:mx-12 lg:h-auto lg:w-px lg:self-stretch"></div>
+          <div
+            class="my-10 h-px w-32 shrink-0 self-center bg-accent/60 lg:my-0 lg:mx-12 lg:h-auto lg:w-px lg:self-stretch">
+          </div>
 
           <div class="flex flex-col items-center text-center" data-aos="fade-up">
             <h2 class="font-display text-3xl font-semibold sm:text-4xl">Valedictory Speaker</h2>
