@@ -1868,6 +1868,24 @@
 
     ];
 
+    // TODO: replace every dummy name below with the actual HOD for each department
+    const COCHAIRS = [
+      'Dr. Dipak K. Midya, <br> &nbsp&nbsp&nbsp Dept. of Anthropology',
+      'Prof. Dilip Kumar Maiti, <br> &nbsp&nbsp&nbsp Dept. of Applied Mathematics',
+      'Prof. Sandip Chattopadhyay, <br> &nbsp&nbsp&nbsp Dept. of Bio-Medical Laboratory Science & Management',
+      'Prof. Prakash Karmakar, <br> &nbsp&nbsp&nbsp Dept. of Botany & Forestry',
+      'Dr. Maidul Hossain, <br> &nbsp&nbsp&nbsp Dept. of Chemistry & Chemical Technology',
+      'Prof. Biswapati Jana, <br> &nbsp&nbsp&nbsp Dept. of Computer Science',
+      'Dr. Sutanu Dutta, <br> &nbsp&nbsp&nbsp Dept. of Electronics',
+      'Dr. Manoj Kumar Pati, <br> &nbsp&nbsp&nbsp Dept. of Fishery Sciences',
+      'Dr. Ramkrishna Maiti, <br> &nbsp&nbsp&nbsp Dept. of Geography',
+      'Prof. Sujata Maiti (Choudhury), <br> &nbsp&nbsp&nbsp Dept. of Human Physiology',
+      'Prof. Keshab Chandra Mondal, <br> &nbsp&nbsp&nbsp Dept. of Microbiology',
+      'Prof. Kuntal Chatterjee, <br> &nbsp&nbsp&nbsp Dept. of Physics',
+      'Dr. Jatisankar Bandyopadhyay, <br> &nbsp&nbsp&nbsp Dept. of Remote Sensing & GIS',
+      'Dr. Sagar Acharya, <br> &nbsp&nbsp&nbsp Dept. of Zoology',
+    ];
+
     // TODO: replace every name/affiliation with the official committee list
     const COMMITTEE = [
       ['Chief Patron', [['Prof. Dipak Kumar Kar', 'Hon’ble Vice-Chancellor, <br> Vidyasagar University', 'bi-star-fill']]],
@@ -1877,9 +1895,7 @@
         ['Prof. Ajay Kumar Misra', 'Director of R & D Cell, <br> Vidyasagar University', 'bi-star-half']
       ]],
       ['Organizing Chair', [['Prof. Paresh Chandra Jana', 'Dean, Faculty of Science, <br> Vidyasagar University', 'bi-diagram-3']]],
-      ['Co-Chair (s)', [
-        ['HOD, Science Faculty', 'Dept. of Anthropology<br>Dept. of Applied Mathematics<br>Dept. of Fishery Sciences<br>Dept. of Bio-Medical Laboratory Science & Management<br>Dept. of Bio Technology<br>Dept. of Botany & Forestry<br>Dept. of Chemistry & Chemical Technology<br>Dept. of Computer Science<br>Dept. of Electronics<br>Dept. of Human Physiology<br>Dept. of Microbiology<br>Dept. of Physics<br>Dept. of Remote Sensing & GIS<br>Dept. of Zoology<br>Vidyasagar University', 'bi-people']
-      ]],
+      ['Co-Chair (s)', COCHAIRS],
       ['Convenor', [['Prof. Dilip K. Maiti', 'Vidyasagar University', 'bi-person-check']]],
       ['Organising Secretaries', [
         ['Prof. Keshab C. Mondal', 'Vidyasagar University', 'bi-person-badge'],
@@ -2111,7 +2127,6 @@
         'Chair (s), Publicity, Media & Website Sub-Committee', 'Chair (s), Cultural Programme Sub-Committee',
       ];
       const layoutColsByRole = {
-        'Co-Chair (s)': 1,
         'Chair (s), International/National Resource/Guest Sub-Committee': 2,
         'Chair (s), Scientific Programme Committee': 3,
       };
