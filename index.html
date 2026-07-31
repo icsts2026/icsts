@@ -155,6 +155,22 @@
       font-size: var(--nav-mobile-size);
     }
 
+    /* ============================================================
+       SECTION SPACING — tweak this one value anytime to change the
+       vertical gap above/below every page section (Themes, Dates,
+       Keynote/Valedictory, Committee, etc.). Applied in place of
+       Tailwind's old py-24 utility, so every section reads from here.
+       ============================================================ */
+    :root {
+      --section-space: 2rem;
+      /* was 6rem (Tailwind's py-24); lower = tighter sections */
+    }
+
+    .section-space {
+      padding-top: var(--section-space);
+      padding-bottom: var(--section-space);
+    }
+
     html {
       scroll-padding-top: 92px;
     }
@@ -887,7 +903,7 @@
     </section>
 
     <!-- ==================== ABOUT ==================== -->
-    <section id="about" class="relative py-24">
+    <section id="about" class="relative section-space">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="grid items-center gap-14 lg:grid-cols-2">
           <div data-aos="fade-right">
@@ -960,7 +976,7 @@
     </section>
 
     <!-- ==================== THEMES ==================== -->
-    <section id="themes" class="bg-white py-24 dark:bg-[#081430]">
+    <section id="themes" class="bg-white section-space dark:bg-[#081430]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Conference Tracks</span>
@@ -976,7 +992,7 @@
     </section>
 
     <!-- ==================== IMPORTANT DATES ==================== -->
-    <section id="dates" class="py-24">
+    <section id="dates" class="section-space">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Mark Your Calendar</span>
@@ -1042,7 +1058,7 @@
     </section>
 
     <!-- ==================== KEYNOTE & VALEDICTORY ==================== -->
-    <section id="speakers" class="bg-primary py-24 text-white dark:bg-[#081430]">
+    <section id="speakers" class="bg-primary section-space text-white dark:bg-[#081430]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="flex flex-col items-center gap-14 lg:flex-row lg:items-stretch lg:justify-center lg:gap-0">
 
@@ -1070,7 +1086,7 @@
     </section>
 
     <!-- ==================== PLENARY SPEAKERS ==================== -->
-    <section id="plenary-speakers" class="bg-white py-24 dark:bg-[#081430]">
+    <section id="plenary-speakers" class="bg-white section-space dark:bg-[#081430]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <!-- <span class="eyebrow justify-center">Voices of the Field</span> -->
@@ -1088,7 +1104,7 @@
     </section>
 
     <!-- ==================== INVITED SPEAKERS ==================== -->
-    <section id="invited-speakers" class="bg-primary py-24 text-white dark:bg-[#081430]">
+    <section id="invited-speakers" class="bg-primary section-space text-white dark:bg-[#081430]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <!-- <span class="eyebrow justify-center">Voices of the Field</span> -->
@@ -1104,7 +1120,7 @@
     </section>
 
     <!-- ==================== ADVISORS (disabled) ====================
-    <section id="advisors" class="bg-white py-24 dark:bg-[#081430]">
+    <section id="advisors" class="bg-white section-space dark:bg-[#081430]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Voices of the Field</span>
@@ -1123,7 +1139,7 @@
     -->
 
     <!-- ==================== COMMITTEE ==================== -->
-    <section id="committee" class="py-24">
+    <section id="committee" class="section-space">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <!-- <span class="eyebrow justify-center">Leadership</span> -->
@@ -1138,7 +1154,7 @@
 
     <!-- ==================== CALL FOR PAPERS ==================== -->
     <!-- Call for Papers section hidden temporarily
-    <section id="cfp" class="bg-white py-24 dark:bg-[#081430]">
+    <section id="cfp" class="bg-white section-space dark:bg-[#081430]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="grid gap-14 lg:grid-cols-5">
           <div class="lg:col-span-2" data-aos="fade-right">
@@ -1260,7 +1276,7 @@
     -->
 
     <!-- ==================== REGISTRATION ==================== -->
-    <section id="registration" class="py-24">
+    <section id="registration" class="section-space">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Join Us</span>
@@ -1341,7 +1357,7 @@
     </section>
 
     <!-- ==================== PROGRAM ==================== -->
-    <section id="program" class="bg-white py-24 dark:bg-[#081430]">
+    <section id="program" class="bg-white section-space dark:bg-[#081430]">
       <div class="mx-auto max-w-5xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Schedule</span>
@@ -1361,7 +1377,7 @@
     </section>
 
     <!-- ==================== HOW TO REACH ==================== -->
-    <section id="venue" class="py-24">
+    <section id="venue" class="section-space">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Getting There</span>
@@ -1424,7 +1440,7 @@
     </section>
 
     <!-- ==================== SPONSORS ==================== -->
-    <section id="sponsors" class="bg-white py-24 dark:bg-[#081430]">
+    <section id="sponsors" class="bg-white section-space dark:bg-[#081430]">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Our Partners</span>
@@ -1485,7 +1501,7 @@
     </section>
 
     <!-- ==================== PLACES TO VISIT ==================== -->
-    <section id="gallery" class="py-24">
+    <section id="gallery" class="section-space">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Explore Midnapore</span>
@@ -1515,7 +1531,7 @@
     </div>
 
     <!-- ==================== STATISTICS (disabled) ====================
-    <section id="stats" class="relative overflow-hidden bg-primary py-24 text-white dark:bg-[#081430]">
+    <section id="stats" class="relative overflow-hidden bg-primary section-space text-white dark:bg-[#081430]">
       <div class="orb h-[300px] w-[300px] -right-20 -top-20 bg-accent/30" aria-hidden="true"></div>
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
@@ -1587,7 +1603,7 @@
     -->
 
     <!-- ==================== TESTIMONIALS (disabled) ====================
-    <section id="testimonials" class="py-24">
+    <section id="testimonials" class="section-space">
       <div class="mx-auto max-w-5xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Community Voices</span>
@@ -1604,7 +1620,7 @@
     -->
 
     <!-- ==================== FAQ ==================== -->
-    <section id="faq" class="bg-white py-24 dark:bg-[#081430]">
+    <section id="faq" class="bg-white section-space dark:bg-[#081430]">
       <div class="mx-auto max-w-3xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Good to Know</span>
