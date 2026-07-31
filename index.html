@@ -171,6 +171,19 @@
       padding-bottom: var(--section-space);
     }
 
+    /* ============================================================
+       BACKGROUND IMAGES CHANGING:
+       HERO BACKGROUND OVERLAY - tweak this one value anytime to
+       change how faded the rotating home-screen background photos
+       look. It's the opacity of the dark layer drawn on top of the
+       images: lower = more visible/less transparent-looking photos,
+       higher = dimmer photos with more contrast for the hero text.
+       ============================================================ */
+    :root {
+      --hero-overlay-opacity: 0.55;
+      /* was 0.74 */
+    }
+
     html {
       scroll-padding-top: 92px;
     }
@@ -350,7 +363,7 @@
     .hero-bg-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(6, 15, 39, .74);
+      background: rgba(6, 15, 39, var(--hero-overlay-opacity));
     }
 
     @keyframes heroBgFade {
