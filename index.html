@@ -1850,25 +1850,28 @@
       ["His Holiness, Hon'ble Ven. Dr. Thirasattho Thero", 'Spiritual Master, IEP Peace Ambassador', 'Sydney', 'Australia', 'Utilizing Buddhist Wisdom for Human Welfare and Environmental Sustainability in the Age of Science and Technology.', 'TT', 'website_images/valedictory_speaker/Valedictory Speaker.jpeg'],
     ];
 
-    const ADVISORY_COMMITTEE = [
+    const ADVISORY_NATIONAL = [
+      'Prof. Sunil Kumar De, North Eastern Hill University, India',
+      'Prof. Dipendrath Das, Professor, Jawaharlal Nehru University',
+      'Prof. Adrijit Goswami, Department of Mathematics, IIT Kharagpur, India',
+      'Dr. Devendra Singh, Scientist-F, Botanical Survey of India, India',
+      'Prof. V. S. Ramachandran, Professor of Botany, Bharathiar University, Coimbatore',
+      'Prof. Tarun Das, Delhi University, India',
+    ];
+
+    const ADVISORY_INTERNATIONAL = [
       'Prof. Luca Vannucci, MD, PhD, Prague, Czech Republic',
       'Prof. Eva Fischer-Fodor, MD, PhD, Cluj-Napoca, Romania',
       'Prof. Ajoy Rana, Illinois University, Chicago, USA',
       'Prof. Lal Mervin Dharmasiri, University of Kelaniya, Sri Lanka',
-      'Prof. Sunil Kumar De, North Eastern Hill University, India',
-      'Prof. Dipendrath Das, Professor, Jawaharlal Nehru University',
       'Prof. Ebenezer Bonyah, Akenten, Ghana',
       'Prof. M.T.M. Dewasurendra, University of Peradeniya, Sri Lanka',
-      'Prof. Adrijit Goswami, Department of Mathematics, IIT Kharagpur, India',
       'Prof. J. Potts, University of South Carolina, USA',
-      'Dr. Devendra Singh, Scientist-F, Botanical Survey of India, India',
       'Prof. Naveen K. Vaidya, San Diego State University, USA',
-      'Prof. V. S. Ramachandran, Professor of Botany, Bharathiar University, Coimbatore',
       'Prof. Samir K. Bhowmik, University of Dhaka, Bangladesh',
       'Prof. Mohammad Osman Gani, Jahangirnagar University, Bangladesh',
       'Prof. Csaba Vágvölgyi, University of Szeged, Hungary',
       'Prof. TzuChuen Lu, Chaoyang University of Technology, Taiwan',
-      'Prof. Tarun Das, Delhi University, India',
       'Prof. Md. Mahbub Alam, Harbin Institute of Technology (Shenzhen), China',
       'Prof. Jihad Asad, Palestine Technical University, Palestine',
       'Prof. Olivia Florea, Transilvania University of Brasov, Romania',
@@ -1975,7 +1978,10 @@
         ['Dr. Chhanda Mallick Mukherjee', 'Vidyasagar University', 'bi-music-note-beamed'],
         ['Dr. Priyanka Halder Mallick', 'Vidyasagar University', 'bi-music-note-beamed']
       ]],
-      ['Advisory Committee', ADVISORY_COMMITTEE],
+      ['Advisory Committee', [
+        ['National', ADVISORY_NATIONAL, 1],
+        ['International', ADVISORY_INTERNATIONAL, 2],
+      ]],
       /* ['Publication Chair', [['Dr. Name Surname', 'Partner Institution', 'bi-journal-text']]],
       ['Finance Chair', [['Dr. Name Surname', 'Vidyasagar University', 'bi-cash-coin']]],
       ['Advisory Committee', [
@@ -2152,16 +2158,38 @@
 
       $('#committee-grid').innerHTML = COMMITTEE.map(([role, members], gi) => {
         const heading = `<h3 class="flex items-center justify-center gap-3 font-heading text-sm font-semibold uppercase tracking-[.22em] text-accent"><span class="h-px w-8 bg-accent"></span>${role}<span class="h-px w-8 bg-accent"></span></h3>`;
+        const listItem = (entry) => {
+          const idx = entry.indexOf(',');
+          const name = idx === -1 ? entry : entry.slice(0, idx);
+          const rest = idx === -1 ? '' : entry.slice(idx);
+          return `<li><span class="font-heading font-semibold text-primary dark:text-white">${name}</span>${rest}</li>`;
+        };
+
+        // Roles whose members are [subheading, list-of-strings, columns] triples render as
+        // several labelled list subsections stacked in one card (e.g. Advisory Committee's
+        // National / International split).
+        if (Array.isArray(members[0]) && Array.isArray(members[0][1])) {
+          const groupBlock = ([label, list, cols], i) => `
+            <div class="${i > 0 ? 'mt-8 border-t border-slate-100 pt-8 dark:border-white/10' : ''}">
+              <p class="mb-4 text-center font-heading text-xs font-semibold uppercase tracking-[.18em] text-accent">${label}</p>
+              <ol class="grid list-inside list-decimal grid-cols-1 ${cols >= 2 ? 'sm:grid-cols-2' : ''} gap-x-10 gap-y-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                ${list.map(listItem).join('')}
+              </ol>
+            </div>`;
+          return `
+      <div data-aos="fade-up">
+        ${heading}
+        <div class="mt-6 flex justify-center">
+          <div class="w-full max-w-5xl rounded-3xl bg-white p-7 shadow-soft dark:bg-nightcard sm:p-8">
+            ${members.map(groupBlock).join('')}
+          </div>
+        </div>
+      </div>`;
+        }
 
         // Roles whose members are plain "Name, Affiliation" strings render as a single
         // two-column list card instead of the usual one-card-per-member grid.
         if (typeof members[0] === 'string') {
-          const listItem = (entry) => {
-            const idx = entry.indexOf(',');
-            const name = idx === -1 ? entry : entry.slice(0, idx);
-            const rest = idx === -1 ? '' : entry.slice(idx);
-            return `<li><span class="font-heading font-semibold text-primary dark:text-white">${name}</span>${rest}</li>`;
-          };
           return `
       <div data-aos="fade-up">
         ${heading}
