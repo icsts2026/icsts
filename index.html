@@ -1795,12 +1795,12 @@
 
     // TODO: replace theme descriptions if the tracks change
     const THEMES = [
-      ['bi-cpu', 'Computational Science and Artificial Intelligence', 'High-performance computing, intelligent systems and data-driven solutions across disciplines.'],
-      ['bi-chat-square-text', 'Sustainable Technological Innovation', 'Green technologies, renewable energy and engineering for a sustainable future.'],
-      ['bi-diagram-3', 'Biotechnology', 'Genetic engineering, bioprocessing and molecular innovations for industry, agriculture and medicine.'],
-      ['bi-layers', 'Biodiversity', 'Conservation science, ecosystem monitoring and the sustainable use of biological resources.'],
-      ['bi-bar-chart-line', 'Environment', 'Climate change, pollution control, and environmental monitoring and management.'],
-      ['bi-eye', 'Health Science', 'Public health, diagnostics, therapeutics and translational biomedical research.'],
+      ['website_theme_icons/Computational Science and Artificial Intelligence.jpg', 'Computational Science and Artificial Intelligence', 'High-performance computing, intelligent systems and data-driven solutions across disciplines.'],
+      ['website_theme_icons/Sustainable Technological Innovation.jpg', 'Sustainable Technological Innovation', 'Green technologies, renewable energy and engineering for a sustainable future.'],
+      ['website_theme_icons/Biotechnology.jpg', 'Biotechnology', 'Genetic engineering, bioprocessing and molecular innovations for industry, agriculture and medicine.'],
+      ['website_theme_icons/Biodiversity.jpg', 'Biodiversity', 'Conservation science, ecosystem monitoring and the sustainable use of biological resources.'],
+      ['website_theme_icons/Environment.jpg', 'Environment', 'Climate change, pollution control, and environmental monitoring and management.'],
+      ['website_theme_icons/Health Sciences.jpg', 'Health Science', 'Public health, diagnostics, therapeutics and translational biomedical research.'],
 
     ];
 
@@ -2069,8 +2069,8 @@
     const injectThemes = () => {
       $('#themes-grid').innerHTML = THEMES.map(([icon, title, desc], i) => `
       <article class="tilt group rounded-3xl bg-surface p-6 shadow-soft transition hover:shadow-softlg dark:bg-nightcard" data-aos="fade-up" data-aos-delay="${(i % 4) * 80}">
-        <span class="grid h-12 w-12 place-items-center rounded-2xl bg-primary/5 text-primary transition group-hover:bg-accent group-hover:text-white dark:bg-white/5 dark:text-accent">
-          <i class="bi ${icon} text-xl" aria-hidden="true"></i>
+        <span class="grid h-14 w-14 place-items-center overflow-hidden rounded-2xl transition group-hover:scale-105">
+          <img src="${encodeURI(icon)}" alt="${title}" loading="lazy" class="h-full w-full object-cover" />
         </span>
         <h3 class="mt-4 font-heading font-semibold text-primary dark:text-white">${title}</h3>
         <p class="mt-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">${desc}</p>
