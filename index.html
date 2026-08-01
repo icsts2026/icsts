@@ -2090,7 +2090,7 @@
         <p class="mt-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">${desc}</p>
         <details class="acc mt-3">
           <summary class="inline-flex items-center gap-1.5 font-heading text-sm font-semibold text-primary dark:text-accent">
-            Show Concept Notes <i class="bi bi-chevron-down acc-icon text-xs" aria-hidden="true"></i>
+            <span class="acc-label">Show Concept Notes</span> <i class="bi bi-chevron-down acc-icon text-xs" aria-hidden="true"></i>
           </summary>
           <div class="acc-body">
             <div class="acc-inner pt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">${conceptNote}</div>
@@ -2549,6 +2549,28 @@
     const initBackToTop = () =>
       $('#back-to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' }));
 
+    // "Show Concept Notes" <-> "Hide Concept Note" label swap, plus auto-collapse
+    // every open concept note once the Themes section scrolls out of view.
+    const initThemeConceptNotes = () => {
+      const grid = $('#themes-grid');
+      const section = $('#themes');
+      if (!grid || !section) return;
+
+      const setLabel = (d) => {
+        const label = $('.acc-label', d);
+        if (label) label.textContent = d.open ? 'Hide Concept Note' : 'Show Concept Notes';
+      };
+
+      $$('details.acc', grid).forEach((d) => d.addEventListener('toggle', () => setLabel(d)));
+
+      const obs = new IntersectionObserver((entries) => entries.forEach((e) => {
+        if (!e.isIntersecting) {
+          $$('details.acc[open]', grid).forEach((d) => { d.open = false; setLabel(d); });
+        }
+      }), { threshold: 0 });
+      obs.observe(section);
+    };
+
     /* ---------- BOOT ---------- */
     document.addEventListener('DOMContentLoaded', () => {
       injectThemes(); injectSpeakers(); injectCommittee(); injectPricing();
@@ -2556,7 +2578,7 @@
 
       initTheme(); initNavbar(); initDrawer(); initCountdown(); initParticles();
       initLightbox(); initCounters(); initChart(); initRipple();
-      initTilt(); initReveal(); initForms(); initBackToTop();
+      initTilt(); initReveal(); initForms(); initBackToTop(); initThemeConceptNotes();
     });
 
     window.addEventListener('load', () => {
