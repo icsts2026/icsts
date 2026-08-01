@@ -1794,13 +1794,26 @@
     /* ---------- DATA (placeholder content - replace with real details) ---------- */
 
     // TODO: replace theme descriptions if the tracks change
+    // subTheme/conceptNote sourced from the per-theme PDFs in website_concept_notes/
     const THEMES = [
-      ['website_theme_icons/Computational Science and Artificial Intelligence.jpg', 'Computational Science and Artificial Intelligence', 'High-performance computing, intelligent systems and data-driven solutions across disciplines.'],
-      ['website_theme_icons/Sustainable Technological Innovation.jpg', 'Sustainable Technological Innovation', 'Green technologies, renewable energy and engineering for a sustainable future.'],
-      ['website_theme_icons/Biotechnology.jpg', 'Biotechnology', 'Genetic engineering, bioprocessing and molecular innovations for industry, agriculture and medicine.'],
-      ['website_theme_icons/Biodiversity.jpg', 'Biodiversity', 'Conservation science, ecosystem monitoring and the sustainable use of biological resources.'],
-      ['website_theme_icons/Environment.jpg', 'Environment', 'Climate change, pollution control, and environmental monitoring and management.'],
-      ['website_theme_icons/Health Sciences.jpg', 'Health Science', 'Public health, diagnostics, therapeutics and translational biomedical research.'],
+      ['website_theme_icons/Computational Science and Artificial Intelligence.jpg', 'Computational Science and Artificial Intelligence', 'High-performance computing, intelligent systems and data-driven solutions across disciplines.',
+        'Artificial Intelligence, Machine Learning, Data Science, Modelling, Computational, and their Cross-Disciplinary Applications.',
+        'This sub-theme focuses on advances in Artificial Intelligence, Machine Learning, Data Science, Computational Modelling, and their interdisciplinary applications in healthcare, biotechnology, environmental science, engineering, and sustainable development. It aims to foster collaboration among researchers to develop innovative, ethical, and data-driven solutions that address complex scientific, societal, and environmental challenges for human welfare.'],
+      ['website_theme_icons/Sustainable Technological Innovation.jpg', 'Sustainable Technological Innovation', 'Green technologies, renewable energy and engineering for a sustainable future.',
+        'Advanced Materials and Plasma Technologies for Sustainable Energy and Health Applications.',
+        'This track bridges the gap between molecular chemistry and applied physics to accelerate the development of next-generation green technologies and renewable energy devices. By bringing together speakers from both disciplines, we aim to translate fundamental physical laws and innovative chemical designs into scalable, eco-friendly solutions for human welfare.'],
+      ['website_theme_icons/Biotechnology.jpg', 'Biotechnology', 'Genetic engineering, bioprocessing and molecular innovations for industry, agriculture and medicine.',
+        'Biotechnology Innovations for One Health and Sustainable Ecosystems.',
+        'The One Health concept recognizes the interconnectedness of human, animal, plant, and environmental health, emphasizing the need for integrated scientific solutions to address global challenges. Biotechnology has emerged as a transformative discipline, offering innovative approaches for disease prevention, sustainable agriculture, food and nutritional security, environmental restoration, and the development of bio-based products. Advances in microbial biotechnology, molecular diagnostics, genomics, synthetic biology, bioinformatics, and bioprocess engineering are accelerating the development of eco-friendly technologies that improve public health while conserving natural ecosystems. This sub-theme aims to highlight cutting-edge research and technological innovations that promote sustainable resource utilization, climate resilience, biodiversity conservation, pollution mitigation, and circular bioeconomy practices. It will provide a multidisciplinary platform for scientists, academicians, industry professionals, and policymakers to exchange knowledge, foster collaborations, and translate biotechnological discoveries into practical solutions that support human welfare and ensure the long-term sustainability of ecosystems.'],
+      ['website_theme_icons/Biodiversity.jpg', 'Biodiversity', 'Conservation science, ecosystem monitoring and the sustainable use of biological resources.',
+        'Biodiversity: Life, Technology and a Sustainable Future.',
+        'Biodiversity is the foundation of life on Earth, encompassing the rich variety of microorganisms, plants, fungi, animals, and ecosystems that sustain ecological balance and human well-being. It provides essential ecosystem services, food security, climate resilience, and sustainable livelihoods. However, biodiversity is increasingly threatened by habitat loss, climate change, pollution, invasive species, and unsustainable resource use. Conserving this invaluable natural heritage requires the integration of classical biological sciences with modern tools such as genomics, biotechnology, artificial intelligence, remote sensing, and bioinformatics. Collaborative research, technological innovation, and community participation are vital to advancing biodiversity conservation, ecosystem restoration, and sustainable development for future generations.'],
+      ['website_theme_icons/Environment.jpg', 'Environment', 'Climate change, pollution control, and environmental monitoring and management.',
+        'Accelerating Solutions for Climate Change and Environmental Stress.',
+        'This seminar aims to accelerate measurable actions for climate change and environmental stress. It aims to formulate an interdisciplinary platform for exploring the scope for climate solutions through scalable interventions, including sustainable agriculture, irrigation technology, the transition to renewable energy, nature-based solutions through bio-diversity restoration etc. The program emphasizes building climate resilience in developing country like India. This event provides a dynamic platform for experts to evaluate global policy frameworks and examine available techniques through cross-sector collaborations in an aim to make them adaptable by local community.'],
+      ['website_theme_icons/Health Sciences.jpg', 'Health Science', 'Public health, diagnostics, therapeutics and translational biomedical research.',
+        'Health Sciences and Human Biology: Scientific and Technological interplays for promotion of Sustainable Health.',
+        'Health and human welfare are increasingly shaped by complex interactions among biological systems, environmental factors, lifestyle and technological advancement. In alignment with the theme "Scientific and Technological Synergy: A Cross-Disciplinary Approach to Support Human Welfare and Environment," this section will provide a scientific platform for brainstorming and exchanging innovative ideas across biomedical sciences, laboratory medicine, clinical nutrition, public health and allied health sciences. The deliberations will explore how converging technologies, interdisciplinary research and translational approaches can address emerging health challenges, strengthen disease prevention and diagnosis, promote nutritional and metabolic health, and develop sustainable, technology-driven solutions for human welfare and environmental well-being.'],
 
     ];
 
@@ -2067,13 +2080,22 @@
     /* ---------- INJECTORS ---------- */
 
     const injectThemes = () => {
-      $('#themes-grid').innerHTML = THEMES.map(([icon, title, desc], i) => `
-      <article class="tilt group rounded-3xl bg-surface p-6 shadow-soft transition hover:shadow-softlg dark:bg-nightcard" data-aos="fade-up" data-aos-delay="${(i % 4) * 80}">
+      $('#themes-grid').innerHTML = THEMES.map(([icon, title, desc, subTheme, conceptNote], i) => `
+      <article class="tilt group flex flex-col rounded-3xl bg-surface p-6 shadow-soft transition hover:shadow-softlg dark:bg-nightcard" data-aos="fade-up" data-aos-delay="${(i % 4) * 80}">
         <span class="grid h-14 w-14 place-items-center overflow-hidden rounded-2xl transition group-hover:scale-105">
           <img src="${encodeURI(icon)}" alt="${title}" loading="lazy" class="h-full w-full object-cover" />
         </span>
         <h3 class="mt-4 font-heading font-semibold text-primary dark:text-white">${title}</h3>
+        <p class="mt-1.5 text-sm font-medium italic text-accent"><span class="font-heading not-italic font-semibold">Sub-theme:</span> ${subTheme}</p>
         <p class="mt-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">${desc}</p>
+        <details class="acc mt-3">
+          <summary class="inline-flex items-center gap-1.5 font-heading text-sm font-semibold text-primary dark:text-accent">
+            Show Concept Notes <i class="bi bi-chevron-down acc-icon text-xs" aria-hidden="true"></i>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-inner pt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">${conceptNote}</div>
+          </div>
+        </details>
       </article>`).join('');
     };
 
