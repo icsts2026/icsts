@@ -90,8 +90,8 @@
             accent: '#C89B3C',
             surface: '#F8FAFC',
             ink: '#1E293B',
-            night: '#060F27',   /* dark-mode page background */
-            nightcard: '#0D1B3E'    /* dark-mode card background */
+            night: 'var(--dark-bg)',       /* dark-mode page background */
+            nightcard: 'var(--dark-card-bg)'    /* dark-mode card background */
           },
           fontFamily: {
             display: ['"Playfair Display"', 'serif'],
@@ -182,6 +182,23 @@
     :root {
       --hero-overlay-opacity: 0.55;
       /* was 0.74 */
+    }
+
+    /* ============================================================
+       DARK MODE COLORS — tweak these anytime to make dark mode
+       lighter/darker. --dark-bg feeds Tailwind's 'night' color
+       (page background) and --dark-card-bg feeds 'nightcard' (card
+       background); every dark: class in the page reads from these.
+       ============================================================ */
+    :root {
+      --dark-bg: #16264F;
+      --dark-card-bg: #1E3566;
+      --dark-footer-bg: #101F42;
+      /* Old (darker) dark-mode palette — kept here for future use:
+      --dark-bg: #060F27;
+      --dark-card-bg: #0D1B3E;
+      --dark-footer-bg: #050C20;
+      */
     }
 
     html {
@@ -1010,7 +1027,7 @@
     </section>
 
     <!-- ==================== THEMES ==================== -->
-    <section id="themes" class="bg-white section-space dark:bg-[#081430]">
+    <section id="themes" class="bg-white section-space dark:bg-night">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Conference Sub-Themes</span>
@@ -1095,7 +1112,7 @@
     </section>
 
     <!-- ==================== KEYNOTE & VALEDICTORY ==================== -->
-    <section id="speakers" class="bg-primary section-space text-white dark:bg-[#081430]">
+    <section id="speakers" class="bg-primary section-space text-white dark:bg-night">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="flex flex-col items-center gap-14 lg:flex-row lg:items-stretch lg:justify-center lg:gap-0">
 
@@ -1123,7 +1140,7 @@
     </section>
 
     <!-- ==================== PLENARY SPEAKERS ==================== -->
-    <section id="plenary-speakers" class="bg-white section-space dark:bg-[#081430]">
+    <section id="plenary-speakers" class="bg-white section-space dark:bg-night">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <!-- <span class="eyebrow justify-center">Voices of the Field</span> -->
@@ -1141,7 +1158,7 @@
     </section>
 
     <!-- ==================== INVITED SPEAKERS ==================== -->
-    <section id="invited-speakers" class="bg-primary section-space text-white dark:bg-[#081430]">
+    <section id="invited-speakers" class="bg-primary section-space text-white dark:bg-night">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <!-- <span class="eyebrow justify-center">Voices of the Field</span> -->
@@ -1157,7 +1174,7 @@
     </section>
 
     <!-- ==================== ADVISORS (disabled) ====================
-    <section id="advisors" class="bg-white section-space dark:bg-[#081430]">
+    <section id="advisors" class="bg-white section-space dark:bg-night">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Voices of the Field</span>
@@ -1173,7 +1190,6 @@
     </div>
     </div>
     </section>
-    -->
 
     <!-- ==================== COMMITTEE ==================== -->
     <section id="committee" class="section-space">
@@ -1191,7 +1207,7 @@
 
     <!-- ==================== CALL FOR PAPERS ==================== -->
     <!-- Call for Papers section hidden temporarily
-    <section id="cfp" class="bg-white section-space dark:bg-[#081430]">
+    <section id="cfp" class="bg-white section-space dark:bg-night">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="grid gap-14 lg:grid-cols-5">
           <div class="lg:col-span-2" data-aos="fade-right">
@@ -1394,7 +1410,7 @@
     </section>
 
     <!-- ==================== PROGRAM ==================== -->
-    <section id="program" class="bg-white section-space dark:bg-[#081430]">
+    <section id="program" class="bg-white section-space dark:bg-night">
       <div class="mx-auto max-w-5xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Schedule</span>
@@ -1477,7 +1493,7 @@
     </section>
 
     <!-- ==================== SPONSORS ==================== -->
-    <section id="sponsors" class="bg-white section-space dark:bg-[#081430]">
+    <section id="sponsors" class="bg-white section-space dark:bg-night">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Our Partners</span>
@@ -1568,7 +1584,7 @@
     </div>
 
     <!-- ==================== STATISTICS (disabled) ====================
-    <section id="stats" class="relative overflow-hidden bg-primary section-space text-white dark:bg-[#081430]">
+    <section id="stats" class="relative overflow-hidden bg-primary section-space text-white dark:bg-night">
       <div class="orb h-[300px] w-[300px] -right-20 -top-20 bg-accent/30" aria-hidden="true"></div>
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
@@ -1657,7 +1673,7 @@
     -->
 
     <!-- ==================== FAQ ==================== -->
-    <section id="faq" class="bg-white section-space dark:bg-[#081430]">
+    <section id="faq" class="bg-white section-space dark:bg-night">
       <div class="mx-auto max-w-3xl px-4 sm:px-6">
         <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
           <span class="eyebrow justify-center">Good to Know</span>
@@ -1705,7 +1721,7 @@
   </main>
 
   <!-- ==================== FOOTER ==================== -->
-  <footer class="bg-primary pt-16 text-slate-300 dark:bg-[#050C20]">
+  <footer class="bg-primary pt-16 text-slate-300 dark:bg-[var(--dark-footer-bg)]">
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
       <div class="grid gap-10 pb-12 md:grid-cols-2 lg:grid-cols-5">
         <div class="lg:col-span-2">
@@ -2306,7 +2322,7 @@
           </thead>
           <tbody>
             ${PRICING.map(([icon, tier, early, late], i) => `
-            <tr class="${i % 2 === 0 ? 'bg-surface dark:bg-nightcard' : 'bg-white dark:bg-[#0c1a3a]'}">
+            <tr class="${i % 2 === 0 ? 'bg-surface dark:bg-nightcard' : 'bg-white dark:bg-night'}">
               <td class="px-6 py-4"><span class="flex items-center gap-3 font-heading font-semibold text-primary dark:text-white"><i class="bi ${icon} text-lg text-accent" aria-hidden="true"></i>${tier}</span></td>
               <td class="px-6 py-4 text-center font-heading text-lg font-bold text-emerald-600 dark:text-emerald-400">${early}</td>
               <td class="px-6 py-4 text-center font-heading text-lg font-bold text-orange-600 dark:text-orange-400">${late}</td>
