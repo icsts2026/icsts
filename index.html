@@ -1217,6 +1217,17 @@
     </div>
     </section>
 
+    <!-- ==================== ADVISORY COMMITTEE ==================== -->
+    <section id="advisory-committee" class="section-space">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
+          <h2 class="mt-4 font-display text-3xl font-semibold text-primary dark:text-white sm:text-4xl">Advisory
+            Committee</h2>
+        </div>
+        <div id="advisory-committee-grid" class="mt-14"></div>
+      </div>
+    </section>
+
     <!-- ==================== COMMITTEE ==================== -->
     <section id="committee" class="section-space">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
@@ -2076,10 +2087,6 @@
         ['Dr. Chhanda Mallick Mukherjee', 'Vidyasagar University', 'bi-music-note-beamed'],
         ['Dr. Priyanka Halder Mallick', 'Vidyasagar University', 'bi-music-note-beamed']
       ]],
-      ['Advisory Committee', [
-        ['National', ADVISORY_NATIONAL, 2],
-        ['International', ADVISORY_INTERNATIONAL, 2],
-      ]],
       /* ['Publication Chair', [['Dr. Name Surname', 'Partner Institution', 'bi-journal-text']]],
       ['Finance Chair', [['Dr. Name Surname', 'Vidyasagar University', 'bi-cash-coin']]],
       ['Advisory Committee', [
@@ -2236,6 +2243,32 @@
       const out = [];
       for (let i = 0; i < arr.length; i += n) out.push(arr.slice(i, i + n));
       return out;
+    };
+
+    const injectAdvisoryCommittee = () => {
+      const listItem = (entry) => {
+        const idx = entry.indexOf(',');
+        const name = idx === -1 ? entry : entry.slice(0, idx);
+        const rest = idx === -1 ? '' : entry.slice(idx);
+        return `<li><span class="font-heading font-semibold text-primary dark:text-white">${name}</span>${rest}</li>`;
+      };
+      const groupBlock = ([label, list, cols], i) => `
+            <div class="${i > 0 ? 'mt-8 border-t border-slate-100 pt-8 dark:border-white/10' : ''}">
+              <p class="mb-4 text-center font-heading text-xs font-semibold uppercase tracking-[.18em] text-accent">${label}</p>
+              <ol class="grid list-inside list-decimal grid-cols-1 ${cols >= 2 ? 'sm:grid-cols-2' : ''} gap-x-10 gap-y-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                ${list.map(listItem).join('')}
+              </ol>
+            </div>`;
+      const groups = [
+        ['National', ADVISORY_NATIONAL, 2],
+        ['International', ADVISORY_INTERNATIONAL, 2],
+      ];
+      $('#advisory-committee-grid').innerHTML = `
+      <div class="flex justify-center" data-aos="fade-up">
+        <div class="w-full max-w-5xl rounded-3xl bg-white p-7 shadow-soft dark:bg-nightcard sm:p-8">
+          ${groups.map(groupBlock).join('')}
+        </div>
+      </div>`;
     };
 
     const injectCommittee = () => {
@@ -2635,7 +2668,7 @@
 
     /* ---------- BOOT ---------- */
     document.addEventListener('DOMContentLoaded', () => {
-      injectThemes(); injectSpeakers(); injectCommittee(); injectPricing();
+      injectThemes(); injectSpeakers(); injectAdvisoryCommittee(); injectCommittee(); injectPricing();
       injectPartners(); injectGallery(); injectTestimonials(); injectFaqs();
 
       initTheme(); initNavbar(); initDrawer(); initCountdown(); initParticles();
