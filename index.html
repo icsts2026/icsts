@@ -175,6 +175,47 @@
     }
 
     /* ============================================================
+       PAYMENT DETAILS LAYOUT — stacks Bank Details above the QR code
+       on narrow screens (so the QR sits right below IFSC with no
+       horizontal scrolling needed), and lays them out side by side
+       like the original table from the sm breakpoint up.
+       ============================================================ */
+    .payment-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "bank-header"
+        "bank-body"
+        "qr-header"
+        "qr-body";
+    }
+
+    @media (min-width: 640px) {
+      .payment-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          "bank-header qr-header"
+          "bank-body qr-body";
+      }
+    }
+
+    .payment-bank-header {
+      grid-area: bank-header;
+    }
+
+    .payment-bank-body {
+      grid-area: bank-body;
+    }
+
+    .payment-qr-header {
+      grid-area: qr-header;
+    }
+
+    .payment-qr-body {
+      grid-area: qr-body;
+    }
+
+    /* ============================================================
        SECTION SPACING — tweak this one value anytime to change the
        vertical gap above/below every page section (Themes, Dates,
        Keynote/Valedictory, Committee, etc.). Applied in place of
@@ -1408,59 +1449,36 @@
         <!-- Payment Details -->
         <div class="mt-14" data-aos="fade-up">
           <h3 class="text-center font-heading text-xl font-bold text-[#C0511B] dark:text-accent">Payment Details</h3>
-          <div class="mx-auto mt-6 max-w-4xl overflow-x-auto rounded-3xl shadow-softlg">
-            <table class="w-full min-w-[560px] border-collapse text-left">
-              <thead>
-                <tr>
-                  <th
-                    class="bg-secondary px-6 py-4 font-heading text-xs font-semibold uppercase tracking-widest text-white sm:text-sm">
-                    <i class="bi bi-bank mr-2 text-accent" aria-hidden="true"></i>Bank Details
-                  </th>
-                  <th
-                    class="bg-secondary px-6 py-4 text-center font-heading text-xs font-semibold uppercase tracking-widest text-white sm:text-sm">
-                    <i class="bi bi-qr-code mr-2 text-accent" aria-hidden="true"></i>Scan to Pay
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="bg-surface dark:bg-nightcard">
-                  <td class="px-6 py-6 align-top">
-                    <dl class="space-y-1.5 text-sm text-slate-700 dark:text-slate-300">
-                      <div class="flex gap-2">
-                        <dt class="font-heading font-semibold text-primary dark:text-white">Bank:
-                        </dt>
-                        <dd>UCO Bank</dd>
-                      </div>
-                      <div class="flex gap-2">
-                        <dt class="font-heading font-semibold text-primary dark:text-white">
-                          Branch:</dt>
-                        <dd>Vidyasagar University</dd>
-                      </div>
-                      <div class="flex gap-2">
-                        <dt class="font-heading font-semibold text-primary dark:text-white">A/c
-                          Name:</dt>
-                        <dd>SCIENTIFIC &amp; TECHNOLOGICAL SYNERGY 2026 STS 2026</dd>
-                      </div>
-                      <div class="flex gap-2">
-                        <dt class="font-heading font-semibold text-primary dark:text-white">A/c
-                          No.:</dt>
-                        <dd>17480110111451</dd>
-                      </div>
-                      <div class="flex gap-2">
-                        <dt class="font-heading font-semibold text-primary dark:text-white">
-                          IFSC:</dt>
-                        <dd>UCBA0001748</dd>
-                      </div>
-                    </dl>
-                  </td>
-                  <td class="px-6 py-8 text-center align-middle">
-                    <img src="website_qrcode/Payment-QR-Code.jpg"
-                      alt="QR code with UCO Bank account details for payment"
-                      class="mx-auto h-full w-auto max-w-full object-contain" loading="lazy" />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="mx-auto mt-6 max-w-4xl overflow-hidden rounded-3xl shadow-softlg">
+            <div class="payment-grid">
+              <div
+                class="payment-bank-header bg-secondary px-6 py-4 font-heading text-xs font-semibold uppercase tracking-widest text-white sm:text-sm">
+                <i class="bi bi-bank mr-2 text-accent" aria-hidden="true"></i>Bank Details
+              </div>
+              <div class="payment-bank-body bg-surface px-6 py-6 dark:bg-nightcard">
+                <dl class="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 text-sm text-slate-700 dark:text-slate-300">
+                  <dt class="font-heading font-semibold text-primary dark:text-white">Bank:</dt>
+                  <dd>UCO Bank</dd>
+                  <dt class="font-heading font-semibold text-primary dark:text-white">Branch:</dt>
+                  <dd>Vidyasagar University</dd>
+                  <dt class="font-heading font-semibold text-primary dark:text-white">A/c Name:</dt>
+                  <dd>SCIENTIFIC &amp; TECHNOLOGICAL SYNERGY 2026 STS 2026</dd>
+                  <dt class="font-heading font-semibold text-primary dark:text-white">A/c No.:</dt>
+                  <dd>17480110111451</dd>
+                  <dt class="font-heading font-semibold text-primary dark:text-white">IFSC:</dt>
+                  <dd>UCBA0001748</dd>
+                </dl>
+              </div>
+              <div
+                class="payment-qr-header bg-secondary px-6 py-4 text-center font-heading text-xs font-semibold uppercase tracking-widest text-white sm:text-sm">
+                <i class="bi bi-qr-code mr-2 text-accent" aria-hidden="true"></i>Scan to Pay
+              </div>
+              <div class="payment-qr-body bg-surface px-6 py-8 text-center dark:bg-nightcard">
+                <img src="website_qrcode/Payment-QR-Code.jpg"
+                  alt="QR code with UCO Bank account details for payment"
+                  class="mx-auto h-56 w-auto max-w-full object-contain sm:h-full" loading="lazy" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
