@@ -691,17 +691,14 @@
     <nav class="mx-auto max-w-7xl px-4 sm:px-6" aria-label="Main navigation">
       <div class="flex h-[76px] items-center justify-between gap-4">
         <!-- Logos -->
-        <a href="#home" class="flex items-center gap-3 shrink-0" aria-label="ICSTS 2026 home">
+        <a href="#home" class="flex items-center gap-3 shrink-0" aria-label="Vidyasagar University home">
           <!-- <img src="vulogo.png" alt="Vidyasagar University logo" class="h-11 w-11 shrink-0 object-contain"> -->
           <img src="vulogo.png" alt="Vidyasagar University logo" width="70">
 
-          <!-- TODO: replace with the official conference logo -->
-          <span class="leading-tight">
-            <span
-              class="nav-logo-text block font-heading font-700 font-bold text-primary dark:text-white tracking-tight">ICSTS
-              <span class="text-accent">2026</span></span>
-            <span class="nav-logo-sub block font-medium tracking-wide text-slate-500 dark:text-slate-400">Vidyasagar
-              University</span>
+          <span
+            class="nav-logo-sub leading-tight font-heading font-bold uppercase tracking-tight text-primary dark:text-white">
+            <span class="block">Vidyasagar</span>
+            <span class="block">University</span>
           </span>
         </a>
 
@@ -742,16 +739,20 @@
 
         <!-- Right actions -->
         <div class="flex items-center gap-2 sm:gap-3">
-          <button id="theme-toggle"
+          <!-- Toggle dark mode button commented -->
+          <!-- <button id="theme-toggle"
             class="grid h-10 w-10 place-items-center rounded-full text-primary transition hover:bg-primary/5 dark:text-accent dark:hover:bg-white/5"
             aria-label="Toggle dark mode" title="Toggle dark mode">
             <i class="bi bi-moon-stars text-lg dark:hidden" aria-hidden="true"></i>
             <i class="bi bi-sun hidden text-lg dark:inline" aria-hidden="true"></i>
-          </button>
-          <a href="https://forms.gle/WyL7nyeAxo48SYnn7" target="_blank" rel="noopener"
-            class="nav-submit-btn btn-ripple hidden sm:inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-heading font-semibold text-primary shadow-gold transition hover:brightness-110 hover:-translate-y-0.5">
-            Submit Paper <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
-          </a>
+          </button> -->
+          <div class="hidden shrink-0 items-center gap-3 sm:flex">
+            <span
+              class="nav-logo-text font-heading font-700 font-bold tracking-tight text-primary dark:text-white">ICSTS
+              <span class="text-accent">2026</span></span>
+            <img src="website_conference_logo/Conference Logo.jpg" alt="ICSTS 2026 conference logo"
+              class="h-[70px] w-[70px] shrink-0 rounded-full object-cover">
+          </div>
           <button id="drawer-open"
             class="grid h-10 w-10 place-items-center rounded-full text-primary hover:bg-primary/5 dark:text-white dark:hover:bg-white/5 xl:hidden"
             aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
@@ -912,8 +913,8 @@
           </a>
           -->
           <a href="https://forms.gle/WyL7nyeAxo48SYnn7" target="_blank" rel="noopener"
-            class="btn-ripple inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-8 py-3.5 font-heading font-semibold text-white backdrop-blur transition hover:-translate-y-0.5 hover:border-accent hover:text-accent">
-            <i class="bi bi-file-earmark-arrow-up" aria-hidden="true"></i> Submit Paper
+            class="btn-ripple inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 font-heading font-semibold text-primary shadow-gold transition hover:-translate-y-0.5 hover:brightness-110">
+            Submit Paper <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
           </a>
           <a href="website_pdfs/brochure.pdf" target="_blank" rel="noopener"
             class="btn-ripple inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-8 py-3.5 font-heading font-semibold text-white backdrop-blur transition hover:-translate-y-0.5 hover:border-accent hover:text-accent">
@@ -1420,8 +1421,7 @@
                       <p
                         class="rounded-t-lg bg-accent px-3 py-1 text-center font-heading text-xs font-bold uppercase tracking-wide text-primary">
                         Scan Here!</p>
-                      <img
-                        src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=UCO%20Bank%2C%20Branch%3A%20Vidyasagar%20University%2C%20A%2Fc%20No.%3A%2017480110111451%2C%20IFSC%3A%20UCBA0001748"
+                      <img src="website_qrcode\Payment-QR-Code.jpg"
                         alt="QR code with UCO Bank account details for payment" class="mx-auto mt-1 h-32 w-32"
                         loading="lazy" />
                     </div>
@@ -2406,7 +2406,9 @@
     /* ---------- BEHAVIOURS ---------- */
 
     const initTheme = () => {
-      $('#theme-toggle').addEventListener('click', () => {
+      const toggle = $('#theme-toggle');
+      if (!toggle) return; // toggle button currently removed from the navbar
+      toggle.addEventListener('click', () => {
         const dark = document.documentElement.classList.toggle('dark');
         localStorage.setItem('ICSTS-theme', dark ? 'dark' : 'light');
       });
