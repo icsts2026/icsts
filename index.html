@@ -133,6 +133,10 @@
       /* "Submit Paper" button */
       --nav-mobile-size: 18px;
       /* mobile drawer (hamburger) menu links */
+      --nav-logo-size-mobile: 11px;
+      /* "ICSTS 2026" below the sm breakpoint, so both logos + text fit */
+      --nav-logo-sub-size-mobile: 10px;
+      /* "Vidyasagar University" below the sm breakpoint */
     }
 
     .nav-logo-text {
@@ -141,6 +145,19 @@
 
     .nav-logo-sub {
       font-size: var(--nav-logo-sub-size);
+    }
+
+    /* Below Tailwind's sm breakpoint (640px), both the university logo and the
+       ICSTS logo + text share the navbar row alongside the hamburger button,
+       so their text shrinks here (logos shrink via sm: image classes in the HTML). */
+    @media (max-width: 639px) {
+      .nav-logo-text {
+        font-size: var(--nav-logo-size-mobile);
+      }
+
+      .nav-logo-sub {
+        font-size: var(--nav-logo-sub-size-mobile);
+      }
     }
 
     #nav-links {
@@ -696,11 +713,11 @@
   <!-- ==================== NAVIGATION ==================== -->
   <header id="navbar" class="glass shadow-soft fixed top-0 inset-x-0 z-[70] transition-all duration-300">
     <nav class="mx-auto max-w-7xl px-4 sm:px-6" aria-label="Main navigation">
-      <div class="flex h-[76px] items-center justify-between gap-4">
+      <div class="flex h-[76px] items-center justify-between gap-2 sm:gap-4">
         <!-- Logos -->
-        <a href="#home" class="flex items-center gap-3 shrink-0" aria-label="Vidyasagar University home">
-          <!-- <img src="vulogo.png" alt="Vidyasagar University logo" class="h-11 w-11 shrink-0 object-contain"> -->
-          <img src="vulogo.png" alt="Vidyasagar University logo" width="70">
+        <a href="#home" class="flex shrink-0 items-center gap-2 sm:gap-3" aria-label="Vidyasagar University home">
+          <img src="vulogo.png" alt="Vidyasagar University logo"
+            class="h-9 w-9 shrink-0 object-contain sm:h-[70px] sm:w-[70px]">
 
           <span
             class="nav-logo-sub leading-tight font-heading font-bold uppercase tracking-tight text-primary dark:text-white">
@@ -753,12 +770,12 @@
             <i class="bi bi-moon-stars text-lg dark:hidden" aria-hidden="true"></i>
             <i class="bi bi-sun hidden text-lg dark:inline" aria-hidden="true"></i>
           </button> -->
-          <div class="hidden shrink-0 items-center gap-3 sm:flex">
+          <div class="flex shrink-0 items-center gap-2 sm:gap-3">
             <span
               class="nav-logo-text font-heading font-700 font-bold tracking-tight text-primary dark:text-white">ICSTS
               <span class="text-accent">2026</span></span>
             <img src="website_conference_logo/Conference Logo.jpg" alt="ICSTS 2026 conference logo"
-              class="h-[70px] w-[70px] shrink-0 rounded-full object-cover">
+              class="h-9 w-9 shrink-0 rounded-full object-cover sm:h-[70px] sm:w-[70px]">
           </div>
           <button id="drawer-open"
             class="grid h-10 w-10 place-items-center rounded-full text-primary hover:bg-primary/5 dark:text-white dark:hover:bg-white/5 xl:hidden"
