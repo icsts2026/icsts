@@ -203,10 +203,17 @@
 
     html {
       scroll-padding-top: 92px;
+      /* Belt-and-suspenders with body's overflow-x-hidden: on mobile, AOS's
+         pre-animation translateX offset (e.g. data-aos="fade-left"/"fade-right")
+         can otherwise widen the true page scroller (<html>) before that
+         element scrolls into view and AOS clears the transform, pushing the
+         fixed navbar's hamburger off-screen until the user scrolls. */
+      overflow-x: hidden;
     }
 
     body {
       font-family: 'Inter', sans-serif;
+      max-width: 100vw;
     }
 
     ::selection {
