@@ -201,22 +201,6 @@
       */
     }
 
-    /* ============================================================
-       PAYMENT DETAILS QR CODE SIZE — tweak this one value anytime
-       to make the "Scan to Pay" QR code in the Payment Details
-       section bigger/smaller. The table cell and card around it
-       grow with it automatically, so the section gets taller too.
-       ============================================================ */
-    :root {
-      --payment-qr-size: 220px;
-      /* was 128px (Tailwind's h-32 w-32) */
-    }
-
-    .payment-qr-img {
-      width: var(--payment-qr-size);
-      height: var(--payment-qr-size);
-    }
-
     html {
       scroll-padding-top: 92px;
     }
@@ -1433,14 +1417,9 @@
                     </dl>
                   </td>
                   <td class="px-6 py-8 text-center align-middle">
-                    <div class="mx-auto inline-block rounded-2xl border-2 border-accent p-3">
-                      <!-- <p
-                        class="rounded-t-lg bg-accent px-3 py-1 text-center font-heading text-xs font-bold uppercase tracking-wide text-primary">
-                        Scan Here!</p> -->
-                      <img src="website_qrcode/Payment-QR-Code.jpg"
-                        alt="QR code with UCO Bank account details for payment"
-                        class="payment-qr-img mx-auto mt-1 object-contain" loading="lazy" />
-                    </div>
+                    <img src="website_qrcode/Payment-QR-Code.jpg"
+                      alt="QR code with UCO Bank account details for payment"
+                      class="mx-auto h-full w-auto max-w-full object-contain" loading="lazy" />
                   </td>
                 </tr>
               </tbody>
