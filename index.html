@@ -2086,12 +2086,12 @@
       ['Treasurer', [['Prof. Sandip K. Sinha', 'Vidyasagar University', 'bi-cash-coin', 'website_organizing_committee_images/Prof. Sandip K. Sinha.jpg']]],
       ['Jt. Treasurer', [['Dr. Joydev Maity', 'Vidyasagar University', 'bi-cash-coin', 'website_organizing_committee_images/Dr. Joydev Maity.jpg']]],
       ['Chair (s), Scientific Programme Committee', [
-        ['Computational Science & Artificial Intelligence', 'Chair(s): <br> Prof. Shyamal K. Mandal, <br> Prof. Biswapati Jana, <br> Prof. Sutanu Dutta', 'bi-cpu'],
-        ['Sustainable Technological Innovation', 'Chair(s): <br> Prof. Braja Gopal Bag, <br> Prof. Swarnendu Sarkar', 'bi-lightbulb'],
-        ['Biotechnology', 'Chair(s): <br> Prof. Keshab C. Mondal, <br> Dr. Manoj K. Pati', 'bi-heart-pulse'],
-        ['Environment', 'Chair(s):<br> Prof Ramkrishna Maity, <br> Dr. Jatisankar Bandyopadhyay', 'bi-globe2'],
-        ['Biodiversity', 'Chair(s):<br> Prof Amal K. Mondal, <br> Prof. Subrata K. De', 'bi-tree'],
-        ['Health Science', 'Chair(s):<br> Prof. Sujata Maity Chowdhury, <br> Prof Sandip Chattopadhyay, <br> Prof Dipak K Midya', 'bi-heart-pulse'],
+        ['Computational Science & Artificial Intelligence', 'Chair(s): <br> Prof. Shyamal K. Mandal, <br> Prof. Biswapati Jana, <br> Prof. Sutanu Dutta', 'bi-cpu', 'website_theme_icons/Computational Science and Artificial Intelligence.jpg'],
+        ['Sustainable Technological Innovation', 'Chair(s): <br> Prof. Braja Gopal Bag, <br> Prof. Swarnendu Sarkar', 'bi-lightbulb', 'website_theme_icons/Sustainable Technological Innovation.jpg'],
+        ['Biotechnology', 'Chair(s): <br> Prof. Keshab C. Mondal, <br> Dr. Manoj K. Pati', 'bi-heart-pulse', 'website_theme_icons/Biotechnology.jpg'],
+        ['Environment', 'Chair(s):<br> Prof Ramkrishna Maity, <br> Dr. Jatisankar Bandyopadhyay', 'bi-globe2', 'website_theme_icons/Environment.jpg'],
+        ['Biodiversity', 'Chair(s):<br> Prof Amal K. Mondal, <br> Prof. Subrata K. De', 'bi-tree', 'website_theme_icons/Biodiversity.jpg'],
+        ['Health Science', 'Chair(s):<br> Prof. Sujata Maity Chowdhury, <br> Prof Sandip Chattopadhyay, <br> Prof Dipak K Midya', 'bi-heart-pulse', 'website_theme_icons/Health Sciences.jpg'],
 
       ]],
       ['Chair (s), Science & Technology Expo', [
@@ -2413,7 +2413,7 @@
         const cardHtml = ([name, aff, icon, photo]) => `
             <article class="tilt ${cardWidthClass({ columns: widthCols, extraPx })} flex items-center gap-5 rounded-3xl p-6 sm:p-7 bg-white shadow-soft transition hover:shadow-softlg dark:bg-nightcard">
               ${photo
-            ? `<img src="${encodeURI(photo)}" alt="${name}" loading="lazy" class="h-16 w-16 shrink-0 rounded-2xl object-cover ring-1 ring-primary/10 dark:ring-white/10" />`
+            ? `<img src="${encodeURI(photo)}" alt="${name}" loading="lazy" class="h-16 w-16 shrink-0 rounded-full object-cover object-top ring-1 ring-primary/10 dark:ring-white/10" />`
             : `<span class="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-primary/5 text-primary dark:bg-white/5 dark:text-accent"><i class="bi ${icon} text-2xl" aria-hidden="true"></i></span>`}
               <div><p class="font-heading text-base font-semibold text-primary dark:text-white">${name}</p><p class="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">${aff}</p></div>
             </article>`;
