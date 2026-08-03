@@ -1204,30 +1204,15 @@
       </div>
     </section>
 
-    <!-- ==================== KEYNOTE & VALEDICTORY ==================== -->
+    <!-- ==================== KEYNOTE ==================== -->
     <section id="speakers" class="bg-primary section-space text-white dark:bg-night">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
-        <div class="flex flex-col items-center gap-14 lg:flex-row lg:items-stretch lg:justify-center lg:gap-0">
-
-          <div class="flex flex-col items-center text-center" data-aos="fade-up">
-            <h2 class="font-display text-3xl font-semibold sm:text-4xl">Keynote Address</h2>
-            <!-- TODO: replace names, designations, photos and social links with confirmed speakers -->
-            <div id="speakers-wrapper" class="mt-14 flex flex-wrap justify-center">
-              <!-- cards injected by JS -->
-            </div>
+        <div class="flex flex-col items-center text-center" data-aos="fade-up">
+          <h2 class="font-display text-3xl font-semibold sm:text-4xl">Keynote Address</h2>
+          <!-- TODO: replace names, designations, photos and social links with confirmed speakers -->
+          <div id="speakers-wrapper" class="mt-14 flex flex-wrap justify-center">
+            <!-- cards injected by JS -->
           </div>
-
-          <div
-            class="my-10 h-px w-32 shrink-0 self-center bg-accent/60 lg:my-0 lg:mx-12 lg:h-auto lg:w-px lg:self-stretch">
-          </div>
-
-          <div class="flex flex-col items-center text-center" data-aos="fade-up">
-            <h2 class="font-display text-3xl font-semibold sm:text-4xl">Valedictory Speaker</h2>
-            <div id="valedictory-wrapper" class="mt-14 flex flex-wrap justify-center">
-              <!-- cards injected by JS -->
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
@@ -1262,6 +1247,19 @@
         <!-- TODO: replace names, designations and photos with confirmed invited speakers -->
         <div id="invited-wrapper" class="mt-14 flex flex-wrap items-stretch justify-center gap-6">
           <!-- cards injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VALEDICTORY SPEAKER ==================== -->
+    <section id="valedictory" class="bg-white section-space dark:bg-night">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="flex flex-col items-center text-center" data-aos="fade-up">
+          <h2 class="font-display text-3xl font-semibold text-primary dark:text-white sm:text-4xl">Valedictory
+            Speaker</h2>
+          <div id="valedictory-wrapper" class="mt-14 flex flex-wrap justify-center">
+            <!-- cards injected by JS -->
+          </div>
         </div>
       </div>
     </section>
@@ -1474,8 +1472,7 @@
                 <i class="bi bi-qr-code mr-2 text-accent" aria-hidden="true"></i>Scan to Pay
               </div>
               <div class="payment-qr-body bg-surface px-6 py-8 text-center dark:bg-nightcard">
-                <img src="website_qrcode/Payment-QR-Code.jpg"
-                  alt="QR code with UCO Bank account details for payment"
+                <img src="website_qrcode/Payment-QR-Code.jpg" alt="QR code with UCO Bank account details for payment"
                   class="mx-auto h-56 w-auto max-w-full object-contain sm:h-full" loading="lazy" />
               </div>
             </div>
@@ -2013,6 +2010,7 @@
     ];
 
     const ADVISORY_INTERNATIONAL = [
+
       'Prof. Luca Vannucci, MD, PhD, Prague, Czech Republic',
       'Prof. Eva Fischer-Fodor, MD, PhD, Cluj-Napoca, Romania',
       'Prof. Ajoy Rana, Illinois University, Chicago, USA',
@@ -2028,6 +2026,7 @@
       'Prof. Md. Mahbub Alam, Harbin Institute of Technology (Shenzhen), China',
       'Prof. Jihad Asad, Palestine Technical University, Palestine',
       'Prof. Olivia Florea, Transilvania University of Brasov, Romania',
+
     ];
 
     // TODO: replace with confirmed advisors (name, designation, university, country, area)
@@ -2278,7 +2277,7 @@
       injectSpeakerGroup('#speakers-wrapper', SPEAKERS, true, false, 'featured');
       injectSpeakerGroup('#plenary-wrapper', PLENARY_SPEAKERS, false, false, 'large');
       injectSpeakerGroup('#invited-wrapper', INVITED_SPEAKERS, true, false, 'large');
-      injectSpeakerGroup('#valedictory-wrapper', VALEDICTORY_SPEAKER, true, false, 'featured');
+      injectSpeakerGroup('#valedictory-wrapper', VALEDICTORY_SPEAKER, false, false, 'featured');
       injectSpeakerGroup('#advisors-wrapper', ADVISORS, false, true);
     };
 
@@ -2296,21 +2295,22 @@
         const rest = idx === -1 ? '' : entry.slice(idx);
         return `<li><span class="font-heading font-semibold text-primary dark:text-white">${name}</span>${rest}</li>`;
       };
-      const groupBlock = ([label, list, cols], i) => `
-            <div class="${i > 0 ? 'mt-8 border-t border-slate-100 pt-8 dark:border-white/10' : ''}">
-              <p class="mb-4 text-center font-heading text-xs font-semibold uppercase tracking-[.18em] text-accent">${label}</p>
-              <ol class="grid list-inside list-decimal grid-cols-1 ${cols >= 2 ? 'sm:grid-cols-2' : ''} gap-x-10 gap-y-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-                ${list.map(listItem).join('')}
-              </ol>
-            </div>`;
-      const groups = [
-        ['National', ADVISORY_NATIONAL, 2],
-        ['International', ADVISORY_INTERNATIONAL, 2],
-      ];
+      const advisors = [...ADVISORY_INTERNATIONAL, ...ADVISORY_NATIONAL];
+      const col1Count = 24;
+      const col1 = advisors.slice(0, col1Count);
+      const col2 = advisors.slice(col1Count);
       $('#advisory-committee-grid').innerHTML = `
       <div class="flex justify-center" data-aos="fade-up">
         <div class="w-full max-w-5xl rounded-3xl bg-white p-7 shadow-soft dark:bg-nightcard sm:p-8">
-          ${groups.map(groupBlock).join('')}
+          <div class="grid grid-cols-1 gap-x-10 gap-y-3 sm:grid-cols-2">
+            <ol class="list-inside list-decimal space-y-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+              ${col1.map(listItem).join('')}
+            </ol>
+            <ol start="${col1Count + 1}"
+              class="list-inside list-decimal space-y-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+              ${col2.map(listItem).join('')}
+            </ol>
+          </div>
         </div>
       </div>`;
     };
