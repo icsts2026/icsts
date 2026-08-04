@@ -2474,20 +2474,20 @@
     const injectPricing = () => {
       $('#pricing-grid').innerHTML = `
       <div class="mx-auto max-w-4xl overflow-x-auto rounded-3xl shadow-softlg" data-aos="fade-up">
-        <table class="w-full min-w-[560px] border-collapse text-left">
+        <table class="w-full min-w-0 table-fixed border-collapse text-left sm:min-w-[560px] sm:table-auto">
           <thead>
             <tr>
-              <th class="bg-secondary px-6 py-4 font-heading text-xs font-semibold uppercase tracking-widest text-white sm:text-sm"><i class="bi bi-people-fill mr-2 text-accent" aria-hidden="true"></i>Category</th>
-              <th class="bg-emerald-600 px-6 py-4 text-center font-heading text-xs font-semibold uppercase tracking-widest text-white sm:text-sm"><i class="bi bi-cash-coin mr-2" aria-hidden="true"></i>Early Bird Fee</th>
-              <th class="bg-orange-500 px-6 py-4 text-center font-heading text-xs font-semibold uppercase tracking-widest text-white sm:text-sm"><i class="bi bi-cash-coin mr-2" aria-hidden="true"></i>Late Bird Fee</th>
+              <th class="w-[38%] bg-secondary px-2 py-3 font-heading text-[10px] font-semibold uppercase leading-tight tracking-tight text-white sm:w-auto sm:px-6 sm:py-4 sm:text-xs sm:tracking-widest md:text-sm"><i class="bi bi-people-fill mr-1 text-accent sm:mr-2" aria-hidden="true"></i>Category</th>
+              <th class="w-[31%] bg-emerald-600 px-2 py-3 text-center font-heading text-[10px] font-semibold uppercase leading-tight tracking-tight text-white sm:w-auto sm:px-6 sm:py-4 sm:text-xs sm:tracking-widest md:text-sm"><i class="bi bi-cash-coin mr-1 sm:mr-2" aria-hidden="true"></i>Early Bird Fee</th>
+              <th class="w-[31%] bg-orange-500 px-2 py-3 text-center font-heading text-[10px] font-semibold uppercase leading-tight tracking-tight text-white sm:w-auto sm:px-6 sm:py-4 sm:text-xs sm:tracking-widest md:text-sm"><i class="bi bi-cash-coin mr-1 sm:mr-2" aria-hidden="true"></i>Late Bird Fee</th>
             </tr>
           </thead>
           <tbody>
             ${PRICING.map(([icon, tier, early, late], i) => `
             <tr class="${i % 2 === 0 ? 'bg-surface dark:bg-nightcard' : 'bg-white dark:bg-night'}">
-              <td class="px-6 py-4"><span class="flex items-center gap-3 font-heading font-semibold text-primary dark:text-white"><i class="bi ${icon} text-lg text-accent" aria-hidden="true"></i>${tier}</span></td>
-              <td class="px-6 py-4 text-center font-heading text-lg font-bold text-emerald-600 dark:text-emerald-400">${early}</td>
-              <td class="px-6 py-4 text-center font-heading text-lg font-bold text-orange-600 dark:text-orange-400">${late}</td>
+              <td class="px-2 py-3 sm:px-6 sm:py-4"><span class="flex items-center gap-1.5 font-heading text-xs font-semibold leading-tight text-primary dark:text-white sm:gap-3 sm:text-base"><i class="bi ${icon} text-sm text-accent sm:text-lg" aria-hidden="true"></i>${tier}</span></td>
+              <td class="px-2 py-3 text-center font-heading text-sm font-bold text-emerald-600 dark:text-emerald-400 sm:px-6 sm:py-4 sm:text-lg">${early}</td>
+              <td class="px-2 py-3 text-center font-heading text-sm font-bold text-orange-600 dark:text-orange-400 sm:px-6 sm:py-4 sm:text-lg">${late}</td>
             </tr>`).join('')}
           </tbody>
         </table>
