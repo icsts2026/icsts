@@ -2056,20 +2056,20 @@
 
     // TODO: replace every dummy name below with the actual HOD for each department
     const COCHAIRS = [
-      'Dr. Dipak K. Midya, <br> &nbsp&nbsp&nbsp Dept. of Anthropology',
-      'Prof. Dilip K. Maiti, <br> &nbsp&nbsp&nbsp Dept. of Applied Mathematics',
-      'Prof. Sandip Chattopadhyay, <br> &nbsp&nbsp&nbsp Dept. of Bio-Medical Laboratory Science & Management',
-      'Prof. Prakash Karmakar, <br> &nbsp&nbsp&nbsp Dept. of Botany & Forestry',
-      'Dr. Maidul Hossain, <br> &nbsp&nbsp&nbsp Dept. of Chemistry & Chemical Technology',
-      'Prof. Biswapati Jana, <br> &nbsp&nbsp&nbsp Dept. of Computer Science',
-      'Dr. Sutanu Dutta, <br> &nbsp&nbsp&nbsp Dept. of Electronics',
-      'Dr. Manoj K. Pati, <br> &nbsp&nbsp&nbsp Dept. of Fishery Sciences',
-      'Dr. Ramkrishna Maiti, <br> &nbsp&nbsp&nbsp Dept. of Geography',
-      'Prof. Sujata Maiti (Choudhury), <br> &nbsp&nbsp&nbsp Dept. of Human Physiology',
-      'Prof. Keshab Chandra Mondal, <br> &nbsp&nbsp&nbsp Dept. of Microbiology',
-      'Prof. Kuntal Chatterjee, <br> &nbsp&nbsp&nbsp Dept. of Physics',
-      'Dr. Jatisankar Bandyopadhyay, <br> &nbsp&nbsp&nbsp Dept. of Remote Sensing & GIS',
-      'Dr. Sagar Acharya, <br> &nbsp&nbsp&nbsp Dept. of Zoology',
+      ['Dr. Dipak K. Midya, <br> Dept. of Anthropology', 'website_organizing_committee_images/Prof. Dipak K. Midya.jpg'],
+      ['Prof. Dilip K. Maiti, <br> Dept. of Applied Mathematics', 'website_organizing_committee_images/Prof. Dilip K. Maiti.jpg'],
+      ['Prof. Sandip Chattopadhyay, <br> Dept. of Bio-Medical Laboratory Science & Management', 'website_organizing_committee_images/Prof. Sandip Chattopadhyay.jpg'],
+      ['Prof. Prakash Karmakar, <br> Dept. of Botany & Forestry', 'website_organizing_committee_images/Prof. Prakash Karmakar.jpg'],
+      ['Dr. Maidul Hossain, <br> Dept. of Chemistry & Chemical Technology', 'website_organizing_committee_images/Dr. Maidul Hossain.jpg'],
+      ['Prof. Biswapati Jana, <br> Dept. of Computer Science', 'website_organizing_committee_images/Prof. Biswapati Jana.jpg'],
+      ['Dr. Sutanu Dutta, <br> Dept. of Electronics', 'website_organizing_committee_images/Dr. Sutanu Dutta.jpg'],
+      ['Dr. Manoj K. Pati, <br> Dept. of Fishery Sciences', 'website_organizing_committee_images/Dr. Manoj K. Pati.jpg'],
+      ['Dr. Ramkrishna Maiti, <br> Dept. of Geography', 'website_organizing_committee_images/Dr. Ramkrishna Maiti.jpg'],
+      ['Prof. Sujata Maiti (Choudhury), <br> Dept. of Human Physiology', 'website_organizing_committee_images/Prof. Sujata Maity Chowdhury.jpg'],
+      ['Prof. Keshab Chandra Mondal, <br> Dept. of Microbiology', 'website_organizing_committee_images/Prof. Keshab C. Mondal.jpg'],
+      ['Prof. Kuntal Chatterjee, <br> Dept. of Physics', 'website_organizing_committee_images/Prof. Kuntal Chatterjee.jpg'],
+      ['Dr. Jatisankar Bandyopadhyay, <br> Dept. of Remote Sensing & GIS', 'website_organizing_committee_images/Dr. Jatisankar Bandyopadhyay.jpg'],
+      ['Dr. Sagar Acharya, <br> Dept. of Zoology', 'website_organizing_committee_images/Dr. Sagar Acharya.jpg'],
     ];
 
     // TODO: replace every name/affiliation with the official committee list
@@ -2417,6 +2417,32 @@
           <div class="w-full max-w-5xl rounded-3xl bg-white p-7 shadow-soft dark:bg-nightcard sm:p-8">
             <ol class="grid list-inside list-decimal grid-cols-1 gap-x-10 gap-y-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400 sm:grid-cols-2">
               ${members.map(listItem).join('')}
+            </ol>
+          </div>
+        </div>
+      </div>`;
+        }
+
+        // Roles whose members are [entry, photo] pairs render as the same compact
+        // numbered list, but with a circular avatar in front of each name (e.g.
+        // Co-Chair(s), which lists many people but still wants a photo cue).
+        if (Array.isArray(members[0]) && members[0].length === 2 && typeof members[0][0] === 'string') {
+          const listItemWithPhoto = ([entry, photo], i) => {
+            const idx = entry.indexOf(',');
+            const name = idx === -1 ? entry : entry.slice(0, idx);
+            const rest = idx === -1 ? '' : entry.slice(idx);
+            const avatar = photo
+              ? `<img src="${encodeURI(photo)}" alt="${name}" loading="lazy" class="h-12 w-12 shrink-0 rounded-full object-cover object-top ring-1 ring-primary/10 dark:ring-white/10" />`
+              : `<span class="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-primary/5 text-primary dark:bg-white/5 dark:text-accent"><i class="bi bi-person-fill text-lg" aria-hidden="true"></i></span>`;
+            return `<li class="flex items-center gap-3"><span class="w-5 shrink-0 font-heading text-sm font-semibold text-slate-400">${i + 1}.</span>${avatar}<span><span class="font-heading font-semibold text-primary dark:text-white">${name}</span>${rest}</span></li>`;
+          };
+          return `
+      <div data-aos="fade-up">
+        ${heading}
+        <div class="mt-6 flex justify-center">
+          <div class="w-full max-w-5xl rounded-3xl bg-white p-7 shadow-soft dark:bg-nightcard sm:p-8">
+            <ol class="grid list-none grid-cols-1 gap-x-10 gap-y-5 text-sm leading-relaxed text-slate-500 dark:text-slate-400 sm:grid-cols-2">
+              ${members.map(listItemWithPhoto).join('')}
             </ol>
           </div>
         </div>
