@@ -175,6 +175,117 @@
     }
 
     /* ============================================================
+       ACS AWARD BANNER — the scrolling gold ribbon fixed just below
+       the navbar announcing ACS's poster-prize support. Height lives
+       in a variable so the responsive override below and the html
+       scroll-padding-top calc (which keeps anchor-linked sections
+       from landing underneath the fixed header + banner) both stay
+       in sync automatically.
+       ============================================================ */
+    :root {
+      --acs-banner-height: 46px;
+    }
+
+    @media (max-width: 639px) {
+      :root {
+        --acs-banner-height: 38px;
+      }
+    }
+
+    .acs-banner {
+      position: fixed;
+      top: 76px;
+      inset-inline: 0;
+      z-index: 65;
+      height: var(--acs-banner-height);
+      overflow: hidden;
+      background: linear-gradient(90deg, #F3E2B3, #C89B3C 40%, #E8C77B 70%, #C89B3C);
+      background-size: 220% auto;
+      animation: acsShimmer 9s linear infinite;
+      box-shadow: 0 8px 24px -10px rgba(200, 155, 60, .6);
+      border-bottom: 1px solid rgba(11, 31, 77, .18);
+    }
+
+    @keyframes acsShimmer {
+      to {
+        background-position: -220% center;
+      }
+    }
+
+    .acs-banner-track {
+      display: flex;
+      width: max-content;
+      height: 100%;
+      animation: acsMarquee 24s linear infinite;
+      will-change: transform;
+    }
+
+    .acs-banner:hover .acs-banner-track,
+    .acs-banner:focus-within .acs-banner-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes acsMarquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .acs-banner-group {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .acs-banner-item {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      padding: 0 2.75rem;
+      height: 100%;
+      white-space: nowrap;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: .92rem;
+      letter-spacing: .01em;
+      color: #0B1F4D;
+      border-right: 1px solid rgba(11, 31, 77, .18);
+    }
+
+    .acs-banner-item i {
+      font-size: 1.15rem;
+      color: #0B1F4D;
+    }
+
+    .acs-banner-item strong {
+      font-weight: 800;
+    }
+
+    @media (max-width: 639px) {
+      .acs-banner-item {
+        padding: 0 1.5rem;
+        font-size: .78rem;
+        gap: .45rem;
+      }
+
+      .acs-banner-item i {
+        font-size: .95rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .acs-banner,
+      .acs-banner-track {
+        animation: none;
+      }
+    }
+
+    /* ============================================================
        PAYMENT DETAILS LAYOUT — stacks Bank Details above the QR code
        on narrow screens (so the QR sits right below IFSC with no
        horizontal scrolling needed), and lays them out side by side
@@ -262,7 +373,7 @@
     }
 
     html {
-      scroll-padding-top: 92px;
+      scroll-padding-top: calc(76px + var(--acs-banner-height, 46px) + 16px);
       /* Belt-and-suspenders with body's overflow-x-hidden: on mobile, AOS's
          pre-animation translateX offset (e.g. data-aos="fade-left"/"fade-right")
          can otherwise widen the true page scroller (<html>) before that
@@ -836,6 +947,22 @@
       </div>
     </nav>
   </header>
+
+  <!-- ACS award announcement banner -->
+  <div class="acs-banner" role="region" aria-label="American Chemical Society poster prize announcement">
+    <div class="acs-banner-track">
+      <div class="acs-banner-group">
+        <span class="acs-banner-item"><i class="bi bi-award-fill" aria-hidden="true"></i> American Chemical Society (ACS) Supporting <strong>5 Best Poster Prizes</strong>: ACS Journal Certificate + ₹3,000 per Award</span>
+        <span class="acs-banner-item"><i class="bi bi-award-fill" aria-hidden="true"></i> American Chemical Society (ACS) Supporting <strong>5 Best Poster Prizes</strong>: ACS Journal Certificate + ₹3,000 per Award</span>
+        <span class="acs-banner-item"><i class="bi bi-award-fill" aria-hidden="true"></i> American Chemical Society (ACS) Supporting <strong>5 Best Poster Prizes</strong>: ACS Journal Certificate + ₹3,000 per Award</span>
+      </div>
+      <div class="acs-banner-group" aria-hidden="true">
+        <span class="acs-banner-item"><i class="bi bi-award-fill" aria-hidden="true"></i> American Chemical Society (ACS) Supporting <strong>5 Best Poster Prizes</strong>: ACS Journal Certificate + ₹3,000 per Award</span>
+        <span class="acs-banner-item"><i class="bi bi-award-fill" aria-hidden="true"></i> American Chemical Society (ACS) Supporting <strong>5 Best Poster Prizes</strong>: ACS Journal Certificate + ₹3,000 per Award</span>
+        <span class="acs-banner-item"><i class="bi bi-award-fill" aria-hidden="true"></i> American Chemical Society (ACS) Supporting <strong>5 Best Poster Prizes</strong>: ACS Journal Certificate + ₹3,000 per Award</span>
+      </div>
+    </div>
+  </div>
 
   <!-- Mobile drawer -->
   <div id="drawer-backdrop" class="fixed inset-0 z-[75] hidden bg-primary/50 backdrop-blur-sm"></div>
