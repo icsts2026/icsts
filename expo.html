@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Science &amp; Technology Expo - ICSTS 2026 | Vidyasagar University</title>
+
+  <meta name="description"
+    content="Science & Technology Expo at ICSTS 2026, Vidyasagar University - a platform for institutions, research organizations, industries and start-ups to showcase scientific innovations. Download the Brochure, Flyer and Schedule." />
+  <meta name="author" content="Vidyasagar University" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- ============ FAVICON (inline SVG) ============ -->
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1F4D'/%3E%3Cpath d='M18 44V20h6l8 15 8-15h6v24h-6V31l-8 14-8-14v13z' fill='%23C89B3C'/%3E%3C/svg%3E" />
+
+  <!-- ============ FONTS ============ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <!-- ============ LIBRARIES ============ -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0B1F4D',
+            secondary: '#123A6D',
+            accent: '#C89B3C',
+            surface: '#F8FAFC',
+            ink: '#1E293B',
+            night: 'var(--dark-bg)',
+            nightcard: 'var(--dark-card-bg)'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            heading: ['Poppins', 'sans-serif'],
+            body: ['Inter', 'sans-serif']
+          },
+          boxShadow: {
+            soft: '0 10px 40px -12px rgba(11,31,77,.15)',
+            softlg: '0 24px 60px -18px rgba(11,31,77,.25)',
+            gold: '0 10px 30px -10px rgba(200,155,60,.45)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ============================================================
+       CUSTOM STYLES - ICSTS 2026 (shared theme with the main site)
+       ============================================================ */
+    :root {
+      --accent: #C89B3C;
+      --primary: #0B1F4D;
+      --section-space: 2rem;
+      /* Dark mode colours - feed Tailwind's 'night' / 'nightcard' */
+      --dark-bg: #16264F;
+      --dark-card-bg: #1E3566;
+      --dark-footer-bg: #101F42;
+    }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      max-width: 100vw;
+    }
+
+    ::selection {
+      background: #C89B3C;
+      color: #0B1F4D;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #F8FAFC;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #123A6D;
+      border-radius: 8px;
+    }
+
+    .dark ::-webkit-scrollbar-track {
+      background: #060F27;
+    }
+
+    .dark ::-webkit-scrollbar-thumb {
+      background: #C89B3C;
+    }
+
+    /* --- Glassmorphism (navbar) --- */
+    .glass {
+      background: rgba(255, 255, 255, .72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, .4);
+    }
+
+    .dark .glass {
+      background: rgba(13, 27, 62, .7);
+      border-color: rgba(200, 155, 60, .15);
+    }
+
+    /* --- Section spacing --- */
+    .section-space {
+      padding-top: var(--section-space);
+      padding-bottom: var(--section-space);
+    }
+
+    /* --- Section eyebrow --- */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: #C89B3C;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 2.2rem;
+      height: 2px;
+      background: #C89B3C;
+      border-radius: 2px;
+    }
+
+    .eyebrow.justify-center {
+      justify-content: center;
+    }
+
+    /* --- Button ripple --- */
+    .btn-ripple {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-ripple .ripple {
+      position: absolute;
+      border-radius: 9999px;
+      transform: scale(0);
+      background: rgba(255, 255, 255, .45);
+      animation: ripple .6s ease-out;
+      pointer-events: none;
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+
+  <script>
+    /* Dark mode - runs immediately to avoid flash. Shares the same
+       localStorage key as the main site so the choice carries over. */
+    (function () {
+      const saved = localStorage.getItem('ICSTS-theme');
+      document.documentElement.classList.toggle('dark', saved === 'dark');
+    })();
+  </script>
+</head>
+
+<body class="bg-surface text-ink dark:bg-night dark:text-slate-200 font-body antialiased overflow-x-hidden">
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <header class="glass shadow-soft fixed top-0 inset-x-0 z-[70]">
+    <nav class="mx-auto max-w-7xl px-4 sm:px-6" aria-label="Main navigation">
+      <div class="flex h-[76px] items-center justify-between gap-2 sm:gap-4">
+        <a href="../index.html" class="flex shrink-0 items-center gap-2 sm:gap-3" aria-label="Vidyasagar University home">
+          <img src="../vulogo.png" alt="Vidyasagar University logo"
+            class="h-12 w-12 shrink-0 object-contain sm:h-[64px] sm:w-[64px]">
+          <span
+            class="leading-tight font-heading text-sm font-bold uppercase tracking-tight text-primary dark:text-white">
+            <span class="block">Vidyasagar</span>
+            <span class="block">University</span>
+          </span>
+        </a>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <a href="../index.html#expo"
+            class="hidden sm:inline-flex items-center gap-2 rounded-full px-4 py-2 font-heading text-sm font-medium text-slate-700 transition hover:text-primary dark:text-slate-300 dark:hover:text-accent">
+            <i class="bi bi-arrow-left" aria-hidden="true"></i> Back to Home
+          </a>
+          <button id="theme-toggle"
+            class="grid h-10 w-10 place-items-center rounded-full text-primary transition hover:bg-primary/5 dark:text-accent dark:hover:bg-white/5"
+            aria-label="Toggle dark mode" title="Toggle dark mode">
+            <i class="bi bi-moon-stars text-lg dark:hidden" aria-hidden="true"></i>
+            <i class="bi bi-sun hidden text-lg dark:inline" aria-hidden="true"></i>
+          </button>
+          <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+            <span class="font-heading text-sm font-bold tracking-tight text-primary dark:text-white sm:text-base">ICSTS
+              <span class="text-accent">2026</span></span>
+            <img src="../website_conference_logo/Conference Logo.jpg" alt="ICSTS 2026 conference logo"
+              class="h-12 w-12 shrink-0 rounded-full object-cover sm:h-[64px] sm:w-[64px]">
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="pt-[92px]">
+
+    <!-- ==================== HERO ==================== -->
+    <section class="section-space">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="mx-auto max-w-3xl text-center" data-aos="fade-up">
+          <span class="eyebrow justify-center">Science &amp; Technology Expo</span>
+          <h1 class="mt-4 font-display text-3xl font-semibold text-primary dark:text-white sm:text-4xl">
+            Showcasing innovation for <span class="text-accent italic">human welfare</span> and the environment
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT THE EXPO ==================== -->
+    <section class="bg-white section-space dark:bg-night">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div
+          class="mx-auto max-w-4xl space-y-4 text-left text-sm leading-relaxed text-slate-600 dark:text-slate-400 sm:text-base"
+          data-aos="fade-up">
+          <p class="text-justify">A platform for academic institutions, research organizations, industries, and
+            start-ups to showcase scientific innovations, emerging technologies, research outcomes, prototypes, and
+            products, aimed at inspiring students, nurturing scientific curiosity, and encouraging them to explore
+            emerging areas of science and technology for human welfare and environmental sustainability.</p>
+          <p class="text-justify">The Expo runs alongside the main conference sessions and is open to delegates,
+            students, and invited visitors. Exhibitors are encouraged to bring working prototypes, posters, and
+            demonstrations that communicate their work to a broad, cross-disciplinary audience. Full participation
+            details, layout, and timings are given in the documents below.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== DOWNLOADS ==================== -->
+    <section class="section-space">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="mx-auto max-w-2xl text-center" data-aos="fade-up">
+          <span class="eyebrow justify-center">Downloads</span>
+          <p class="mt-4 text-slate-600 dark:text-slate-400">Brochure, Flyer, and Schedule for the Science &amp;
+            Technology Expo.</p>
+        </div>
+
+        <div class="mx-auto mt-12 grid max-w-4xl gap-5 sm:grid-cols-3" data-aos="fade-up">
+          <!-- Brochure -->
+          <a href="../website_brochure_flyer_schedule/Brochure.pdf" download
+            class="btn-ripple group flex flex-col items-center gap-4 rounded-2xl bg-white p-8 text-center shadow-soft ring-1 ring-slate-100 transition hover:-translate-y-1 hover:shadow-softlg dark:bg-nightcard dark:ring-white/10">
+            <span
+              class="grid h-14 w-14 place-items-center rounded-xl bg-accent/10 text-accent transition group-hover:bg-accent group-hover:text-primary">
+              <i class="bi bi-journal-richtext text-2xl" aria-hidden="true"></i>
+            </span>
+            <span class="font-heading font-semibold text-primary dark:text-white">Brochure</span>
+            <span class="inline-flex items-center gap-2 text-sm font-medium text-accent">
+              <i class="bi bi-download" aria-hidden="true"></i> Download PDF
+            </span>
+          </a>
+
+          <!-- Flyer -->
+          <a href="../website_brochure_flyer_schedule/Flyer.pdf" download
+            class="btn-ripple group flex flex-col items-center gap-4 rounded-2xl bg-white p-8 text-center shadow-soft ring-1 ring-slate-100 transition hover:-translate-y-1 hover:shadow-softlg dark:bg-nightcard dark:ring-white/10">
+            <span
+              class="grid h-14 w-14 place-items-center rounded-xl bg-accent/10 text-accent transition group-hover:bg-accent group-hover:text-primary">
+              <i class="bi bi-file-earmark-image text-2xl" aria-hidden="true"></i>
+            </span>
+            <span class="font-heading font-semibold text-primary dark:text-white">Flyer</span>
+            <span class="inline-flex items-center gap-2 text-sm font-medium text-accent">
+              <i class="bi bi-download" aria-hidden="true"></i> Download PDF
+            </span>
+          </a>
+
+          <!-- Schedule -->
+          <a href="../website_brochure_flyer_schedule/Schedule.pdf" download
+            class="btn-ripple group flex flex-col items-center gap-4 rounded-2xl bg-white p-8 text-center shadow-soft ring-1 ring-slate-100 transition hover:-translate-y-1 hover:shadow-softlg dark:bg-nightcard dark:ring-white/10">
+            <span
+              class="grid h-14 w-14 place-items-center rounded-xl bg-accent/10 text-accent transition group-hover:bg-accent group-hover:text-primary">
+              <i class="bi bi-calendar3 text-2xl" aria-hidden="true"></i>
+            </span>
+            <span class="font-heading font-semibold text-primary dark:text-white">Schedule</span>
+            <span class="inline-flex items-center gap-2 text-sm font-medium text-accent">
+              <i class="bi bi-download" aria-hidden="true"></i> Download PDF
+            </span>
+          </a>
+        </div>
+
+        <div class="mt-12 text-center" data-aos="fade-up">
+          <a href="../index.html#expo"
+            class="btn-ripple inline-flex items-center gap-2 rounded-full border border-primary/20 px-8 py-3.5 font-heading font-semibold text-primary transition hover:-translate-y-0.5 hover:border-accent hover:text-accent dark:border-white/20 dark:text-white dark:hover:border-accent dark:hover:text-accent">
+            <i class="bi bi-arrow-left" aria-hidden="true"></i> Back to Home
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-primary text-slate-300 dark:bg-[color:var(--dark-footer-bg)]">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div
+        class="flex flex-col items-center justify-between gap-4 py-6 text-xs text-slate-400 sm:flex-row">
+        <p>&copy; 2026 ICSTS &middot; Vidyasagar University, West Bengal, India. All rights reserved.</p>
+        <a href="https://www.vidyasagar.ac.in" target="_blank" rel="noopener"
+          class="transition hover:text-accent">Vidyasagar University</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 700, once: true, offset: 40 });
+
+    /* Dark mode toggle - mirrors the main site */
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const dark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('ICSTS-theme', dark ? 'dark' : 'light');
+    });
+
+    /* Button ripple effect */
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-ripple');
+      if (!btn) return;
+      const circle = document.createElement('span');
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      circle.className = 'ripple';
+      circle.style.width = circle.style.height = size + 'px';
+      circle.style.left = (e.clientX - rect.left - size / 2) + 'px';
+      circle.style.top = (e.clientY - rect.top - size / 2) + 'px';
+      btn.appendChild(circle);
+      setTimeout(() => circle.remove(), 600);
+    });
+  </script>
+</body>
+
+</html>
