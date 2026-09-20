@@ -123,9 +123,9 @@
        there's nothing to change in the HTML further down.
        ============================================================ */
     :root {
-      --nav-logo-size: 21px;
+      --nav-logo-size: 26px;
       /* "ICSTS 2026" wordmark next to the logo */
-      --nav-logo-sub-size: 20px;
+      --nav-logo-sub-size: 25px;
       /* "Vidyasagar University" subtitle under it */
       --nav-link-size: 16px;
       /* desktop menu links + the "More" dropdown */
@@ -133,11 +133,9 @@
       /* "Submit Paper" button */
       --nav-mobile-size: 18px;
       /* mobile drawer (hamburger) menu links */
-      --nav-logo-size-mobile: 14px;
-      /* 11px  */
+      --nav-logo-size-mobile: 16px;
       /* "ICSTS 2026" below the sm breakpoint, so both logos + text fit */
-      --nav-logo-sub-size-mobile: 12px;
-      /* 10px */
+      --nav-logo-sub-size-mobile: 14px;
       /* "Vidyasagar University" below the sm breakpoint */
     }
 
@@ -159,6 +157,18 @@
 
       .nav-logo-sub {
         font-size: var(--nav-logo-sub-size-mobile);
+      }
+    }
+
+    /* Desktop only: nudge the two logos outward, away from the now-larger
+       navbar text, to give it breathing room. Mobile keeps logos in place. */
+    @media (min-width: 640px) {
+      .nav-uni-logo {
+        transform: translateX(-8px);
+      }
+
+      .nav-conf-logo {
+        transform: translateX(8px);
       }
     }
 
@@ -905,7 +915,7 @@
         <!-- Logos -->
         <a href="#home" class="flex shrink-0 items-center gap-2 sm:gap-3" aria-label="Vidyasagar University home">
           <img src="vulogo.png" alt="Vidyasagar University logo"
-            class="h-12 w-12 shrink-0 object-contain sm:h-[70px] sm:w-[70px]">
+            class="nav-uni-logo h-12 w-12 shrink-0 object-contain sm:h-[70px] sm:w-[70px]">
 
           <span
             class="nav-logo-sub leading-tight font-heading font-bold uppercase tracking-tight text-primary dark:text-white">
@@ -964,7 +974,7 @@
               class="nav-logo-text font-heading font-700 font-bold tracking-tight text-primary dark:text-white">ICSTS
               <span class="text-accent">2026</span></span>
             <img src="website_conference_logo/Conference Logo.jpg" alt="ICSTS 2026 conference logo"
-              class="h-12 w-12 shrink-0 rounded-full object-cover sm:h-[70px] sm:w-[70px]">
+              class="nav-conf-logo h-12 w-12 shrink-0 rounded-full object-cover sm:h-[70px] sm:w-[70px]">
           </div>
           <button id="drawer-open"
             class="grid h-10 w-10 place-items-center rounded-full text-primary hover:bg-primary/5 dark:text-white dark:hover:bg-white/5 xl:hidden"
