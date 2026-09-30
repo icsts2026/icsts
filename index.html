@@ -857,8 +857,9 @@
       }
     }
 
-    /* --- Lightbox --- */
-    #lightbox {
+    /* --- Lightbox + announcement dialog --- */
+    #lightbox,
+    #announce {
       transition: opacity .3s ease;
     }
 
@@ -919,6 +920,29 @@
     <div class="loader-ring"></div>
     <p class="font-heading text-sm tracking-[.3em] uppercase text-white/80">ICSTS <span class="text-accent">2026</span>
     </p>
+  </div>
+
+  <!-- ==================== DEADLINE ANNOUNCEMENT (shown once per visit) ==================== -->
+  <div id="announce"
+    class="fixed inset-0 z-[85] hidden items-center justify-center bg-primary/80 p-4 opacity-0 backdrop-blur-sm"
+    role="dialog" aria-modal="true" aria-labelledby="announce-title">
+    <div
+      class="relative w-full max-w-md rounded-3xl border-t-4 border-accent bg-white p-8 text-center shadow-softlg dark:bg-nightcard">
+      <button id="announce-close"
+        class="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-slate-100 text-primary transition hover:bg-accent hover:text-primary dark:bg-white/10 dark:text-white"
+        aria-label="Close announcement"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+      <span class="timeline-dot mx-auto grid h-14 w-14 place-items-center rounded-full bg-accent text-2xl text-primary"><i
+          class="bi bi-megaphone-fill" aria-hidden="true"></i></span>
+      <p class="eyebrow mt-5 justify-center">Deadline Extended</p>
+      <h2 id="announce-title"
+        class="mt-3 font-display text-2xl font-semibold leading-snug text-primary dark:text-white sm:text-3xl">
+        Abstract submission deadline extended up to <span class="text-gold-grad">30th October 2026</span>
+      </h2>
+      <a href="#dates" id="announce-cta"
+        class="btn-ripple mt-7 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-heading text-sm font-semibold text-primary shadow-gold transition hover:-translate-y-0.5">
+        View Important Dates <i class="bi bi-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
   </div>
 
   <!-- ==================== SCROLL PROGRESS ==================== -->
@@ -2996,6 +3020,32 @@
       obs.observe(section);
     };
 
+    // Deadline announcement dialog: shown once per browser session, right
+    // after the page loader clears. Change the key to re-announce.
+    const initAnnouncement = () => {
+      const box = $('#announce'), key = 'ICSTS-announce-abstract-30oct';
+      if (!box) return;
+      try {
+        if (sessionStorage.getItem(key)) return;
+        sessionStorage.setItem(key, '1');
+      } catch (e) { /* storage blocked: just show it */ }
+      const lastFocus = document.activeElement;
+      const close = () => {
+        box.classList.add('opacity-0');
+        setTimeout(() => { box.classList.add('hidden'); box.classList.remove('flex'); }, 300);
+        document.body.style.overflow = '';
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      };
+      box.classList.remove('hidden'); box.classList.add('flex');
+      requestAnimationFrame(() => box.classList.remove('opacity-0'));
+      document.body.style.overflow = 'hidden';
+      $('#announce-close').focus();
+      $('#announce-close').addEventListener('click', close);
+      $('#announce-cta').addEventListener('click', close);
+      box.addEventListener('click', e => { if (e.target === box) close(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && !box.classList.contains('hidden')) close(); });
+    };
+
     /* ---------- BOOT ---------- */
     document.addEventListener('DOMContentLoaded', () => {
       injectThemes(); injectSpeakers(); injectAdvisoryCommittee(); injectCommittee(); injectPricing();
@@ -3008,6 +3058,7 @@
 
     window.addEventListener('load', () => {
       $('#loader').classList.add('done');
+      initAnnouncement();
       initHeroGsap();
       if (window.AOS) AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60, disable: prefersReducedMotion });
       if (window.Swiper) {
