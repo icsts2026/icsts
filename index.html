@@ -555,6 +555,29 @@
       }
     }
 
+    /* --- Glowing RGB gradient button (e.g. deadline extended) --- */
+    .btn-glow-rgb {
+      background: linear-gradient(90deg, #E0504F, #4FE070, #4F7FE0) !important;
+      animation: btnGlowPulseRGB 3s ease-in-out infinite;
+    }
+
+    @keyframes btnGlowPulseRGB {
+
+      0%,
+      100% {
+        box-shadow: 0 0 22px 6px rgba(224, 80, 79, .7), 0 0 34px 10px rgba(224, 80, 79, .3);
+      }
+
+      33% {
+        box-shadow: 0 0 22px 6px rgba(79, 224, 112, .7), 0 0 34px 10px rgba(79, 224, 112, .3);
+      }
+
+      66% {
+        box-shadow: 0 0 22px 6px rgba(79, 127, 224, .7), 0 0 34px 10px rgba(79, 127, 224, .3);
+      }
+    }
+
+
     /* --- Card tilt (JS driven) --- */
     .tilt {
       transform-style: preserve-3d;
@@ -1200,6 +1223,14 @@
           <a href="website_brochure_flyer_schedule/Tarrif for Adv.pdf" target="_blank" rel="noopener"
             class="btn-ripple btn-glow inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 font-heading font-semibold text-primary shadow-gold transition hover:-translate-y-0.5 hover:brightness-110">
             <i class="bi bi-megaphone" aria-hidden="true"></i> Invitation for Sponsorship and Souvenir Advertisement
+          </a>
+        </div>
+
+        <!-- Deadline extended CTA -->
+        <div class="hero-anim mt-4 flex flex-wrap items-center justify-center gap-4">
+          <a href="#dates"
+            class="btn-ripple btn-glow-rgb inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 font-heading font-semibold text-white shadow-gold transition hover:-translate-y-0.5 hover:brightness-110">
+            <i class="bi bi-alarm" aria-hidden="true"></i> Abstract submission deadline extended up to 30 October 2026
           </a>
         </div>
 
