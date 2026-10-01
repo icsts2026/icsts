@@ -194,11 +194,21 @@
        ============================================================ */
     :root {
       --acs-banner-height: 46px;
+      /* Marquee scroll speed, expressed as a duration: lower = faster.
+         Mobile/tablet keep the original speed; laptop/desktop get a
+         slower (larger) duration below. Tweak either value anytime. */
+      --acs-marquee-duration: 24s;
     }
 
     @media (max-width: 639px) {
       :root {
         --acs-banner-height: 38px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      :root {
+        --acs-marquee-duration: 48s;
       }
     }
 
@@ -226,7 +236,7 @@
       display: flex;
       width: max-content;
       height: 100%;
-      animation: acsMarquee 24s linear infinite;
+      animation: acsMarquee var(--acs-marquee-duration) linear infinite;
       will-change: transform;
     }
 
