@@ -3128,7 +3128,9 @@
 
     window.addEventListener('load', () => {
       $('#loader').classList.add('done');
-      initAnnouncement();
+      // Abstract submission date extended first time popup dialog 
+      // is not required now
+      //initAnnouncement();
       initHeroGsap();
       if (window.AOS) AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60, disable: prefersReducedMotion });
       if (window.Swiper) {
