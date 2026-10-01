@@ -954,7 +954,8 @@
       <button id="announce-close"
         class="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-slate-100 text-primary transition hover:bg-accent hover:text-primary dark:bg-white/10 dark:text-white"
         aria-label="Close announcement"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
-      <span class="timeline-dot mx-auto grid h-14 w-14 place-items-center rounded-full bg-accent text-2xl text-primary"><i
+      <span
+        class="timeline-dot mx-auto grid h-14 w-14 place-items-center rounded-full bg-accent text-2xl text-primary"><i
           class="bi bi-megaphone-fill" aria-hidden="true"></i></span>
       <p class="eyebrow mt-5 justify-center">Deadline Extended</p>
       <h2 id="announce-title"
@@ -1450,7 +1451,7 @@
               <p class="mt-1 text-sm font-medium text-accent">30 October 2026</p>
               <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Abstracts via CMT / EasyChair</p>
             </div>
-          </div> 
+          </div>
           <!-- <div class="relative flex gap-5 pl-2 md:block md:pl-0 md:text-center" data-aos="fade-up" data-aos-delay="100">
             <span
               class="timeline-dot relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white text-secondary ring-2 ring-accent dark:bg-nightcard dark:text-accent md:mx-auto"><i
@@ -2256,7 +2257,8 @@
     // Invited speakers 1-14 (Tracks A-F, Day 1 & Day 2 parallel sessions)
     // Note: Track C-2, Invited Talk-7 has no confirmed speaker in the schedule yet - add once announced.
     const INVITED_SPEAKERS = [
-      ['Prof. TzuChuen Lu', 'Professor', 'Chaoyang University of Technology', 'Taiwan', 'Information Management in the Age of AI', 'TL', 'website_images/invited_speakers/Prof. TzuChuen Lu.jpeg'],
+      // ['Prof. TzuChuen Lu', 'Professor', 'Chaoyang University of Technology', 'Taiwan', 'Information Management in the Age of AI', 'TL', 'website_images/invited_speakers/Prof. TzuChuen Lu.jpeg'],
+      ['Dr. Brij Bhooshan Gupta', 'Associate Professor', 'Asia University', 'Taiwan', '', 'TL', 'website_images/invited_speakers/Dr. Brij Bhooshan Gupta.jpeg'],
       ['Prof. Mehakpreet Singh', 'Professor', 'University of Limerick', 'Ireland', 'Mechanistic Modelling of Particulate Processes', 'MS', 'website_images/invited_speakers/Prof. Mehakpreet Singh.jpeg'],
       ['Prof. Satyabrata Jit', 'Professor', 'IIT Benaras (BHU)', 'India', 'MOS Transistor Technology for Computational Systems', 'SJ', 'website_images/invited_speakers/Prof. Satyabrata Jit.jpeg'],
       ['Prof. C. V. Yalamaggad', 'Professor', 'Centre for Nano and Soft Matter Sciences, Bengaluru', 'India', 'Quantum Dot Technology for Energy-Sustainable Displays', 'CY', 'website_images/invited_speakers/Prof. C. V. Yalamaggad.jpeg'],
@@ -2365,6 +2367,10 @@
       ]],
       ['Organizing Chair', [['Prof. Paresh Chandra Jana', 'Dean, Faculty of Science, <br> Vidyasagar University', 'bi-diagram-3', 'website_organizing_committee_images/Prof. Paresh Chandra Jana.jpg']]],
       ['Convenor', [['Prof. Dilip K. Maiti', 'Vidyasagar University', 'bi-person-check', 'website_organizing_committee_images/Prof. Dilip K. Maiti.jpg']]],
+      ['Co-Convenors', [
+        ['Dr. Sagar Acharya', 'Vidyasagar University', 'bi-person-check', 'website_organizing_committee_images/Dr. Sagar Acharya.jpg'],
+        ['Dr. Avick Biswas', 'Vidyasagar University', 'bi-person-check', 'website_organizing_committee_images/Dr. Avick Biswas.jpg'],
+      ]],
       ['Organising Secretaries', [
         ['Prof. Keshab C. Mondal', 'Vidyasagar University', 'bi-person-badge', 'website_organizing_committee_images/Prof. Keshab C. Mondal.jpg'],
         ['Prof. Biswapati Jana', 'Vidyasagar University', 'bi-person-badge', 'website_organizing_committee_images/Prof. Biswapati Jana.jpg'],
@@ -2402,7 +2408,7 @@
         ['Prof. Debdulal Banerjee', 'Vidyasagar University', 'bi-journal-text', 'website_organizing_committee_images/Prof. Debdulal Banerjee.jpg']
       ]],
       ['Chair (s), Registration Sub-Committee', [
-        ['Dr. Sagar Acharya', 'Vidyasagar University', 'bi-clipboard-check', 'website_organizing_committee_images/Dr. Sagar Acharya.jpg'],
+        ['Dr. Rajendra Prosad Ghosh', 'Vidyasagar University', 'bi-clipboard-check', 'website_organizing_committee_images/Dr. Rajendra Prosad Ghosh.jpg'],
         ['Dr. Ganesh Ghorai', 'Vidyasagar University', 'bi-clipboard-check', 'website_organizing_committee_images/Dr. Ganesh Ghorai.jpg']
       ]],
       ['Chair (s), Finance Sub-Committee', [
@@ -2631,7 +2637,7 @@
       // Resource/Guest sub-committee is laid out 2-per-row but sized to match
       // Organizing Chair's (4-column) card width).
       const wideRoles = [
-        'Chief Patron', 'Patron (s)', 'Organizing Chair', 'Convenor', 'Organising Secretaries', 'Treasurer', 'Jt. Treasurer',
+        'Chief Patron', 'Patron (s)', 'Organizing Chair', 'Convenor', 'Co-Convenors', 'Organising Secretaries', 'Treasurer', 'Jt. Treasurer',
         'Chair (s), Souvenir & Publications Sub-Committee', 'Chair (s), Registration Sub-Committee',
         'Chair (s), Finance & Budget Sub-Committee', 'Chair (s), Sponsorship & Advertisement Sub-Committee',
         'Chair (s), Travel Sub-Committee', 'Chair (s), Reception and Accommodation Sub-Committee',
